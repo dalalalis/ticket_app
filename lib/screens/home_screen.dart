@@ -1,14 +1,18 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ticket_app/widgets/event.dart';
 import 'package:ticket_app/widgets/featured_event_view.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,12 +75,13 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Text('Featured Events', style: Styles.headLineStyle2),
                   InkWell(
-                    onTap: () {
-                      print('you are tapping view all');
-                    },
                     child: Text('view all',
                         style: Styles.textStyle
                             .copyWith(color: Styles.primaryColor)),
+                    onTap: () {
+                      context.push('/eventlist/');
+                      print('eventlist view');
+                    },
                   )
                 ],
               ),
@@ -88,6 +93,10 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     children: [EventView(), EventView(), EventView()],
                   )),
+//required first 7 events, then view all page
+//view all page takes gridview [check khaled category]
+//-----------------------------add gridview builder---------
+
               SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

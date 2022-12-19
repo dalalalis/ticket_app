@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
-import '../utils/app_styling.dart';
+import 'package:ticket_app/models/event.dart';
+import 'package:go_router/go_router.dart';
 
 class EventsView2 extends StatelessWidget {
-  const EventsView2({super.key});
+  const EventsView2({
+    super.key,
+  });
+  //required this.event
+  //final Events event;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +21,9 @@ class EventsView2 extends StatelessWidget {
           child: InkWell(
             onTap: () {
               print('tapped events');
+              context.push('');
+              //push to the detailed_event_page.
+              //send event id to be used in the detailed page.
             },
             child: Column(
               children: [
@@ -31,12 +37,12 @@ class EventsView2 extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
-                    "Event Name",
+                    '{event.name}',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
-                Text('venues'),
-                Text('location Country')
+                Text('{event.date}'),
+                Text('{event.city}, {event.city}')
               ],
             ),
           ),
