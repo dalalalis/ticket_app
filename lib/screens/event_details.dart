@@ -16,6 +16,10 @@ class _EventDetailsState extends State<EventDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          title: Text(
+            'Available Tickets',
+          ),
+          foregroundColor: Colors.grey[800],
           backgroundColor: Styles.bgColor,
           actions: [
             IconButton(

@@ -30,11 +30,15 @@ class EventProvider extends ChangeNotifier {
     required String country,
     required DateTime date,
   }) async {
-    var response = await Client.dio.post('/events/add',
-        data: FormData.fromMap({
-          'name': name,
-          'image': await MultipartFile.fromFile(image.path),
-        }));
-    loadEvents();
+    try {
+      var response = await Client.dio.post('',
+          data: FormData.fromMap({
+            'name': name,
+            'image': await MultipartFile.fromFile(image.path),
+          }));
+      loadEvents();
+    } on Exception catch (e) {
+      // TODO
+    }
   }
 }

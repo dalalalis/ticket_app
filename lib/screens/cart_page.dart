@@ -41,8 +41,20 @@ class _CheckoutPageState extends State<CheckoutPage> {
       appBar: AppBar(
           backgroundColor: Styles.bgColor,
           title: SlideCountdown(
-            duration: Duration(minutes: 10),
+            duration: Duration(seconds: 10),
           )),
+      body: Container(
+        child: Column(children: [
+          Text(
+            'Order summary',
+            style: Styles.headLineStyle,
+          ),
+          Text('{Event.name}', style: Styles.headLineStyle2),
+          Text('{Event.venue}', style: Styles.headLineStyle3),
+          Text('{Event.datetime}', style: Styles.headLineStyle3),
+          Text('Terms and Conditions', style: Styles.headLineStyle2),
+        ]),
+      ),
     );
   }
 }

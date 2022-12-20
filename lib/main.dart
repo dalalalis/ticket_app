@@ -6,7 +6,6 @@ import 'package:ticket_app/screens/cart_page.dart';
 import 'package:ticket_app/screens/create_event.dart';
 import 'package:ticket_app/screens/event_details.dart';
 import 'package:ticket_app/screens/home_screen.dart';
-import 'package:ticket_app/screens/ticket_list.dart';
 import 'package:ticket_app/screens/viewall_event_page.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 
