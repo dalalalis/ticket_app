@@ -14,7 +14,7 @@ class EventView extends StatelessWidget {
         child: Card(
           child: InkWell(
             onTap: () {
-              context.push('/eventdetailed');
+              context.push('/eventlist/detailed/');
               print('tapped events');
             },
             child: Column(

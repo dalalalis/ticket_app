@@ -21,7 +21,10 @@ final router = GoRouter(routes: [
   GoRoute(path: '/eventlist', builder: ((context, state) => EventListView())),
   GoRoute(
       path: '/eventlist/create', builder: ((context, state) => CreateEvent())),
-  GoRoute(path: '/cart', builder: ((context, state) => EventDetails()))
+  GoRoute(path: '/cart', builder: ((context, state) => CheckoutPage())),
+  GoRoute(
+      path: '/eventlist/detailed',
+      builder: ((context, state) => EventDetails()))
 ]);
 
 class MyApp extends StatelessWidget {
