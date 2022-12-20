@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:ticket_app/screens/bottom_bar.dart';
 import 'package:ticket_app/screens/cart_page.dart';
 import 'package:ticket_app/screens/create_event.dart';
+import 'package:ticket_app/screens/event_details.dart';
 import 'package:ticket_app/screens/home_screen.dart';
 import 'package:ticket_app/screens/ticket_list.dart';
 import 'package:ticket_app/screens/viewall_event_page.dart';
@@ -20,7 +21,7 @@ final router = GoRouter(routes: [
   GoRoute(path: '/eventlist', builder: ((context, state) => EventListView())),
   GoRoute(
       path: '/eventlist/create', builder: ((context, state) => CreateEvent())),
-  GoRoute(path: '/cart', builder: ((context, state) => CheckoutPage()))
+  GoRoute(path: '/cart', builder: ((context, state) => EventDetails()))
 ]);
 
 class MyApp extends StatelessWidget {
