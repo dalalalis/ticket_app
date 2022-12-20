@@ -1,8 +1,10 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ticket_app/screens/home_screen.dart';
 import 'package:ticket_app/screens/myticket_screen.dart';
 import 'package:ticket_app/screens/search_screen.dart';
+import 'package:ticket_app/utils/app_styling.dart';
 
 import 'profile_screen.dart';
 
@@ -34,6 +36,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Styles.bgColor,
+        actions: [
+          IconButton(
+              onPressed: () {
+                context.push('/cart/');
+              },
+              icon: Icon(Icons.shopping_bag_outlined,
+                  size: 40, color: Colors.grey))
+        ],
+      ),
       // appBar: AppBar(
       //   title: Text('Ticket'),
 

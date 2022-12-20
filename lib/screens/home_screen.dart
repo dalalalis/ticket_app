@@ -31,11 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Good morning',
+                          'Hello {user.name}',
                           style: Styles.headLineStyle3,
                         ),
                         SizedBox(height: 7),
-                        Text('Book Tickets', style: Styles.headLineStyle),
+                        Text('Start Booking', style: Styles.headLineStyle),
                       ],
                     ),
                   ),

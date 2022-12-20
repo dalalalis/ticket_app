@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class EventView extends StatelessWidget {
   const EventView({super.key});
@@ -13,6 +14,7 @@ class EventView extends StatelessWidget {
         child: Card(
           child: InkWell(
             onTap: () {
+              context.push('/eventdetailed');
               print('tapped events');
             },
             child: Column(

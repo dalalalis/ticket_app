@@ -17,7 +17,31 @@ class ProfilePage extends StatelessWidget {
                 onPressed: () {
                   context.push('/eventlist/create');
                 },
-                child: Text('Create Event')))
+                child: Text('Create Event'))),
+        Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  context.push('');
+                },
+                child: Text('Logout'))),
+        Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  context.push('');
+                },
+                child: Text('Sell Ticket'))),
+        Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  context.push('');
+                },
+                child: Text('terms and conditons'))),
+        Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  context.push('');
+                },
+                child: Text('contact us')))
       ],
     ));
   }
