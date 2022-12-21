@@ -41,8 +41,8 @@ class EventProvider extends ChangeNotifier {
             'title': title,
             'image': await MultipartFile.fromFile(image.path),
             'venue': venue,
-            'startdate': startdate,
-            'enddate': enddate,
+            'startdate': startdate.toString(),
+            'enddate': enddate.toString(),
             'city': city,
             'country': country,
           }));
