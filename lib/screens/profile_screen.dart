@@ -55,9 +55,9 @@ class ProfilePage extends StatelessWidget {
         Center(
           child: ElevatedButton(
               onPressed: () {
-                context.push("/login");
+                context.push("/signin");
               },
-              child: Text("Login")),
+              child: Text("Signin")),
         ),
         Center(
           child: ElevatedButton(

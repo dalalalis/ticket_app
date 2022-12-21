@@ -22,9 +22,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (Platform.isAndroid) {
-    Client.dio.options.baseUrl = "http://10.0.2.2:8000";
+    Client.dio.options.baseUrl = "http://10.0.2.2:8000/";
   } else if (Platform.isIOS) {
-    Client.dio.options.baseUrl = "http://localhost:8000";
+    Client.dio.options.baseUrl = "http://localhost:8000/";
   }
 
   var authProvider = AuthProvider();

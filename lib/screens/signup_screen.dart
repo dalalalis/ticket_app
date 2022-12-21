@@ -9,6 +9,9 @@ class Signup extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final firstnameController = TextEditingController();
+  final lastnameController = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -38,6 +41,28 @@ class Signup extends StatelessWidget {
                   },
                 ),
                 TextFormField(
+                  controller: firstnameController,
+                  decoration: InputDecoration(
+                      hintText: "Firstname", labelText: "Firstname"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Required field";
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: lastnameController,
+                  decoration: InputDecoration(
+                      hintText: "Lastname", labelText: "Lastname"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Required field";
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
                   controller: passwordController,
                   decoration: InputDecoration(
                       hintText: "Password", labelText: "Password"),
@@ -59,7 +84,7 @@ class Signup extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return "Required field";
                     }
-                    if (value != passwordController) {
+                    if (value != passwordController.text) {
                       return "Passwords Does Not Match";
                     }
                     return null;
@@ -71,11 +96,14 @@ class Signup extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      var error = await context.read<AuthProvider>().signup(
-                          username: usernameController.text,
-                          password: passwordController.text);
+                      var success = await context.read<AuthProvider>().signup(
+                            username: usernameController.text,
+                            password: passwordController.text,
+                            first_name: firstnameController.text,
+                            last_name: lastnameController.text,
+                          );
 
-                      if (error == null) {
+                      if (success) {
                         context.pop();
                       } else {
                         ScaffoldMessenger.of(context)

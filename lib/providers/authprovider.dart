@@ -10,9 +10,15 @@ import 'client.dart';
 class AuthProvider extends ChangeNotifier {
   String? username;
   int? password;
+  String? first_name;
+  String? last_name;
 
-  Future<bool?> signup(
-      {required String username, required String password}) async {
+  Future<bool> signup({
+    required String username,
+    required String password,
+    required String first_name,
+    required String last_name,
+  }) async {
     try {
       Client.dio.options.headers.remove("authorization");
       var response = await Client.dio
@@ -20,18 +26,20 @@ class AuthProvider extends ChangeNotifier {
               data: {
             "username": username,
             "password": password,
+            "first_name": first_name,
+            "last_name": last_name,
           });
 
-      var token = response.data["token"];
+      var token = response.data["access"];
       Client.dio.options.headers["authorization"] = "Bearer $token";
       this.username = username;
 
       var preferences = await SharedPreferences.getInstance();
       await preferences.setString("token", token);
 
-      return null;
+      return true;
     } on DioError catch (e) {
-      print(e.response!.data);
+      print(e);
     } catch (e) {
       print("unknown error");
     }
@@ -49,7 +57,7 @@ class AuthProvider extends ChangeNotifier {
             "password": password,
           });
 
-      var token = response.data["token"];
+      var token = response.data["access"];
 
       Client.dio.options.headers["authorization"] = "Bearer $token";
 

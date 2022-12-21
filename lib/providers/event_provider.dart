@@ -14,7 +14,7 @@ class EventProvider extends ChangeNotifier {
     try {
       notifyListeners();
       events.clear();
-      var response = await Client.dio.get('event/');
+      var response = await Client.dio.get('/event/');
 
       var eventsJsonList = response.data as List;
       events =

@@ -47,9 +47,6 @@ class Signin extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return "Required field";
                     }
-                    if (value != passwordController) {
-                      return "Passwords Does Not Match";
-                    }
                     return null;
                   },
                 ),
@@ -57,9 +54,9 @@ class Signin extends StatelessWidget {
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         var signed = await context.read<AuthProvider>().login(
-                            username: usernameController.text,
-                            password: passwordController
-                                .text); // calling the provider
+                              username: usernameController.text,
+                              password: passwordController.text,
+                            ); // calling the provider
 
                         if (signed == null) {
                           context.pop();
