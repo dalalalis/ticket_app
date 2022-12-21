@@ -4,11 +4,9 @@ import 'package:ticket_app/models/event.dart';
 import 'package:go_router/go_router.dart';
 
 class EventsView2 extends StatelessWidget {
-  const EventsView2({
-    super.key,
-  });
-  //required this.event
-  //final Events event;
+  const EventsView2({super.key, required this.event});
+  // required this.event;
+  final Events event;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,7 @@ class EventsView2 extends StatelessWidget {
               children: [
                 Spacer(),
                 Image(
-                  image: AssetImage('lib/assets/img_1.png'),
+                  image: NetworkImage("${event.image}"),
                   height: 100,
                   width: 140,
                 ),
@@ -37,12 +35,13 @@ class EventsView2 extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
-                    '{event.name}',
+                    '${event.title}',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
-                Text('{event.date}'),
-                Text('{event.city}, {event.city}')
+                Text('${event.startdate}'),
+                Text('${event.enddate}'),
+                Text('${event.city}, ${event.country}')
               ],
             ),
           ),

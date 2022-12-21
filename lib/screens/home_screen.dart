@@ -101,7 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Events', style: Styles.headLineStyle2),
+                  //binary logical operator
+                  if (true) Text('Events', style: Styles.headLineStyle2),
                   InkWell(
                     onTap: () {
                       print('you are tapping view all');
@@ -113,10 +114,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               SizedBox(height: 10),
+              //list view inside a container (add height)
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [EventsView2(), EventsView2()],
+                    children: [EventView(), EventView()],
                   ))
             ],
           ),

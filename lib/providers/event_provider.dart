@@ -11,30 +11,40 @@ class EventProvider extends ChangeNotifier {
     loadEvents();
   }
   Future<void> loadEvents() async {
-    notifyListeners();
-    events.clear();
-    var response = await Client.dio.get('');
+    try {
+      notifyListeners();
+      events.clear();
+      var response = await Client.dio.get('event/');
 
-    var eventsJsonList = response.data as List;
-    events =
-        eventsJsonList.map((eventJson) => Events.fromMap(eventJson)).toList();
-    notifyListeners();
+      var eventsJsonList = response.data as List;
+      events =
+          eventsJsonList.map((eventJson) => Events.fromMap(eventJson)).toList();
+      notifyListeners();
+    } on Exception catch (e) {
+      // TODO
+      print(e);
+    }
   }
 
   Future<void> addEvent({
-    required String name,
+    required String title,
     required File image,
     required String venue,
-    required DateTime time,
+    required DateTime startdate,
     required String city,
     required String country,
-    required DateTime date,
+    required DateTime enddate,
   }) async {
     try {
       var response = await Client.dio.post('',
           data: FormData.fromMap({
-            'name': name,
+            'title': title,
             'image': await MultipartFile.fromFile(image.path),
+            'venue': venue,
+            'startdate': startdate,
+            'enddate': enddate,
+            'city': city,
+            'country': country,
           }));
       loadEvents();
     } on Exception catch (e) {

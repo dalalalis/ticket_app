@@ -27,15 +27,12 @@ class EventListView extends StatelessWidget {
         backgroundColor: Styles.bgColor,
         body: SafeArea(
             child: Container(
-                child: ListView(children: [EventsView2(), EventsView2()])
-
-                //             .builder(
-                //   itemCount: context.watch<EventProvider>().events.length,
-                //   itemBuilder: ((context, index) =>
-                //       EventsView2(event: context.watch<EventProvider>().events[index])),
-                //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                //       crossAxisCount: 2, crossAxisSpacing: 12, mainAxisSpacing: 22),
-                // ))))
-                )));
+                child: ListView.builder(
+          // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          //     crossAxisCount: 2, crossAxisSpacing: 12, mainAxisSpacing: 22)
+          itemCount: context.watch<EventProvider>().events.length,
+          itemBuilder: ((context, index) =>
+              EventsView2(event: context.watch<EventProvider>().events[index])),
+        ))));
   }
 }

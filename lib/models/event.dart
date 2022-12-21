@@ -1,49 +1,49 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class Events {
   int id;
-  String name;
+  String title;
   String image;
   String venue;
-  DateTime time;
+  String enddate;
   String city;
   String country;
-  DateTime date;
-
+  String startdate;
   Events({
     required this.id,
-    required this.name,
+    required this.title,
     required this.image,
     required this.venue,
-    required this.time,
+    required this.enddate,
     required this.city,
     required this.country,
-    required this.date,
+    required this.startdate,
   });
 
   Map<String, dynamic> toMap() {
-    return {
+    return <String, dynamic>{
       'id': id,
-      'name': name,
+      'title': title,
       'image': image,
       'venue': venue,
-      'time': time,
+      'enddate': enddate,
       'city': city,
       'country': country,
-      'date': date,
+      'startdate': startdate,
     };
   }
 
   factory Events.fromMap(Map<String, dynamic> map) {
     return Events(
       id: map['id']?.toInt() ?? 0,
-      name: map['name'] ?? '',
-      image: map['image'] ?? '',
-      venue: map['venue'] ?? '',
-      time: map['time'] ?? '',
-      city: map['city'] ?? '',
-      country: map['country'] ?? '',
-      date: map['date'] ?? '',
+      title: map['title'] as String ?? "",
+      image: map['image'] as String ?? "",
+      venue: map['venue'] as String ?? "",
+      enddate: map['enddate'] as String ?? "",
+      city: map['city'] as String ?? "",
+      country: map['country'] as String ?? "",
+      startdate: map['startdate'] as String ?? "",
     );
   }
 

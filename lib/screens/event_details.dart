@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ticket_app/utils/app_styling.dart';
+import 'package:ticket_app/widgets/ticket.dart';
 
 class EventDetails extends StatefulWidget {
   const EventDetails({super.key});
@@ -34,8 +35,7 @@ class _EventDetailsState extends State<EventDetails> {
           isAlwaysShown: true,
           child: ListView.builder(
             itemCount: 50,
-            itemBuilder: ((context, index) =>
-                Text('Hello', style: Styles.headLineStyle2)),
+            itemBuilder: ((context, index) => TicketPage()),
           ),
         ));
   }
