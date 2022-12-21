@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/authprovider.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -18,12 +21,12 @@ class ProfilePage extends StatelessWidget {
                   context.push('/eventlist/create');
                 },
                 child: Text('Create Event'))),
-        Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  context.push('');
-                },
-                child: Text('Logout'))),
+        // Center(
+        //     child: ElevatedButton(
+        //         onPressed: () {
+        //           context.push('');
+        //         },
+        //         child: Text('Logout'))),
         Center(
             child: ElevatedButton(
                 onPressed: () {
@@ -35,13 +38,35 @@ class ProfilePage extends StatelessWidget {
                 onPressed: () {
                   context.push('');
                 },
-                child: Text('terms and conditons'))),
+                child: Text('Terms and Conditons'))),
         Center(
             child: ElevatedButton(
                 onPressed: () {
                   context.push('');
                 },
-                child: Text('contact us')))
+                child: Text('Contact Us'))),
+        Center(
+          child: ElevatedButton(
+              onPressed: () {
+                context.push("/signup");
+              },
+              child: Text("Signup")),
+        ),
+        Center(
+          child: ElevatedButton(
+              onPressed: () {
+                context.push("/login");
+              },
+              child: Text("Login")),
+        ),
+        Center(
+          child: ElevatedButton(
+            onPressed: () {
+              context.read<AuthProvider>().logout();
+            },
+            child: Text("Signout"),
+          ),
+        )
       ],
     ));
   }
