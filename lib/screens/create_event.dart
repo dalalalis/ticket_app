@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -17,11 +18,14 @@ class CreateEvent extends StatefulWidget {
 }
 
 class _CreateEventState extends State<CreateEvent> {
-  final nameController = TextEditingController();
+  final titleController = TextEditingController();
   final venueController = TextEditingController();
-  final dateController = TextEditingController();
-  final cityController = TextEditingController();
 
+  final cityController = TextEditingController();
+  final countryController = TextEditingController();
+
+  DateTime? _valueChanged1;
+  DateTime? _valueChanged2;
   File? imageFile;
   String? imageError;
   var formKey = GlobalKey<FormState>();
@@ -37,22 +41,19 @@ class _CreateEventState extends State<CreateEvent> {
             padding: const EdgeInsets.all(30.0),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextFormField(
-                    controller: cityController,
-                    decoration: InputDecoration(hintText: "City"),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Field is required";
-                      }
+                TextFormField(
+                  controller: cityController,
+                  decoration: InputDecoration(hintText: "City"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Field is required";
+                    }
 
-                      return null;
-                    },
-                  ),
+                    return null;
+                  },
                 ),
                 TextFormField(
-                  controller: nameController,
+                  controller: titleController,
                   decoration: InputDecoration(hintText: "event name"),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -74,13 +75,70 @@ class _CreateEventState extends State<CreateEvent> {
                   },
                 ),
                 TextFormField(
-                  controller: dateController,
-                  decoration: InputDecoration(hintText: "date"),
+                  controller: countryController,
+                  decoration: InputDecoration(hintText: "country"),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Field is required";
                     }
 
+                    return null;
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Event Start Date'),
+                ),
+                DateTimePicker(
+                  type: DateTimePickerType.dateTimeSeparate,
+                  dateMask: 'd MMM, yyyy',
+                  initialValue: DateTime.now().toString(),
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2100),
+                  icon: Icon(Icons.event),
+                  dateLabelText: 'Date',
+                  timeLabelText: "Hour",
+                  selectableDayPredicate: (date) {
+                    // Disable weekend days to select from the calendar
+                    if (date.weekday == 6 || date.weekday == 7) {
+                      return false;
+                    }
+
+                    return true;
+                  },
+                  onChanged: (val) =>
+                      setState(() => _valueChanged1 = DateTime.parse(val)),
+                  validator: (val) {
+                    print(val);
+                    return null;
+                  },
+                  // onSaved: (val) => setState(() => _valueChanged1 = val!),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Event End Date'),
+                ),
+                DateTimePicker(
+                  type: DateTimePickerType.dateTimeSeparate,
+                  dateMask: 'd MMM, yyyy',
+                  initialValue: DateTime.now().toString(),
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2100),
+                  icon: Icon(Icons.event),
+                  dateLabelText: 'Date',
+                  timeLabelText: "Hour",
+                  selectableDayPredicate: (date) {
+                    // Disable weekend days to select from the calendar
+                    if (date.weekday == 6 || date.weekday == 7) {
+                      return false;
+                    }
+
+                    return true;
+                  },
+                  onChanged: (val) =>
+                      setState(() => _valueChanged2 = DateTime.parse(val)),
+                  validator: (val) {
+                    print(val);
                     return null;
                   },
                 ),
@@ -118,27 +176,35 @@ class _CreateEventState extends State<CreateEvent> {
                   ),
                 Spacer(),
                 ElevatedButton(
-                    onPressed: () async {
-                      // form
+                  onPressed: () async {
+                    formKey.currentState!.save();
+                    print("date $_valueChanged1");
+                    print("time");
 
-                      if (imageFile == null) {
-                        setState(() {
-                          imageError = "Required field";
-                        });
-                      }
-
-                      //   if (formKey.currentState!.validate() && imageFile != null) {
-                      //     await context.read<EventProvider>().addEvent(
-                      //         name: nameController.text,
-                      //         image: imageFile!,
-                      //         venue: venueController.text,
-                      //         date: dateController.selection,
-                      //         city: cityController.text,
-                      //         );
+                    if (imageFile == null) {
+                      setState(() {
+                        imageError = "Required field";
+                      });
+                    }
+                    if (formKey.currentState!.validate() &&
+                        imageFile != null &&
+                        _valueChanged1 != null &&
+                        _valueChanged2 != null) {
+                      await context.read<EventProvider>().addEvent(
+                            title: titleController.text,
+                            image: imageFile!,
+                            venue: venueController.text,
+                            country: countryController.text,
+                            city: cityController.text,
+                            startdate: _valueChanged1!,
+                            enddate: _valueChanged2!,
+                          );
                       context.pop();
                       //   }
-                    },
-                    child: Text("Add Event"))
+                    }
+                  },
+                  child: Text("Add Event"),
+                )
               ],
             ),
           ),

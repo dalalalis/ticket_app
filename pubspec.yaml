@@ -46,6 +46,8 @@ dependencies:
   sqflite: ^2.2.2
   badges: ^2.0.3
   slide_countdown: ^0.3.4
+  date_time_picker: ^2.1.0
+
 
 dev_dependencies:
   flutter_test:
