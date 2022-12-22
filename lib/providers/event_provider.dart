@@ -14,7 +14,7 @@ class EventProvider extends ChangeNotifier {
     try {
       notifyListeners();
       events.clear();
-      var response = await Client.dio.get('event/');
+      var response = await Client.dio.get('/event/');
 
       var eventsJsonList = response.data as List;
       events =
@@ -41,8 +41,8 @@ class EventProvider extends ChangeNotifier {
             'title': title,
             'image': await MultipartFile.fromFile(image.path),
             'venue': venue,
-            'startdate': startdate,
-            'enddate': enddate,
+            'startdate': startdate.toString(),
+            'enddate': enddate.toString(),
             'city': city,
             'country': country,
           }));

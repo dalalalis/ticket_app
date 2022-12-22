@@ -1,9 +1,12 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:ticket_app/widgets/event.dart';
 import 'package:ticket_app/widgets/featured_event_view.dart';
 import 'package:ticket_app/utils/app_styling.dart';
+
+import '../providers/authprovider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,9 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Hello {user.name}',
-                          style: Styles.headLineStyle3,
+                        Row(
+                          children: [
+                            Text(
+                              'Hello {user.name}',
+                              style: Styles.headLineStyle3,
+                            ),
+                          ],
                         ),
                         SizedBox(height: 7),
                         Text('Start Booking', style: Styles.headLineStyle),

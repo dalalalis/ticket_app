@@ -39,8 +39,8 @@ class EventsView2 extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
-                Text('${event.startdate}'),
-                Text('${event.enddate}'),
+                Text('${event.startDate}'),
+                Text('${event.endDate}'),
                 Text('${event.city}, ${event.country}')
               ],
             ),
