@@ -11,6 +11,7 @@ import 'package:ticket_app/screens/Signin_screen.dart';
 import 'package:ticket_app/screens/bottom_bar.dart';
 import 'package:ticket_app/screens/cart_page.dart';
 import 'package:ticket_app/screens/create_event.dart';
+import 'package:ticket_app/screens/create_ticket.dart';
 import 'package:ticket_app/screens/event_details.dart';
 import 'package:ticket_app/screens/home_screen.dart';
 import 'package:ticket_app/screens/signup_screen.dart';
@@ -51,7 +52,11 @@ final router = GoRouter(routes: [
     path: '/signup',
     builder: (context, state) => Signup(),
   ),
-  GoRoute(path: '/signin', builder: ((context, state) => Signin()))
+  GoRoute(path: '/signin', builder: ((context, state) => Signin())),
+  GoRoute(
+    path: '/addticket',
+    builder: (context, state) => AddTicket(),
+  ),
 ]);
 
 class MyApp extends StatelessWidget {

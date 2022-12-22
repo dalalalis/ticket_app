@@ -30,7 +30,7 @@ class ProfilePage extends StatelessWidget {
         Center(
             child: ElevatedButton(
                 onPressed: () {
-                  context.push('');
+                  context.push('/addticket');
                 },
                 child: Text('Sell Ticket'))),
         Center(
