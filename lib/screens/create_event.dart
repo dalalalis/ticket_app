@@ -41,19 +41,16 @@ class _CreateEventState extends State<CreateEvent> {
             padding: const EdgeInsets.all(30.0),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextFormField(
-                    controller: cityController,
-                    decoration: InputDecoration(hintText: "City"),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Field is required";
-                      }
+                TextFormField(
+                  controller: cityController,
+                  decoration: InputDecoration(hintText: "City"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Field is required";
+                    }
 
-                      return null;
-                    },
-                  ),
+                    return null;
+                  },
                 ),
                 TextFormField(
                   controller: titleController,
@@ -76,6 +73,21 @@ class _CreateEventState extends State<CreateEvent> {
 
                     return null;
                   },
+                ),
+                TextFormField(
+                  controller: countryController,
+                  decoration: InputDecoration(hintText: "country"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Field is required";
+                    }
+
+                    return null;
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Event Start Date'),
                 ),
                 DateTimePicker(
                   type: DateTimePickerType.dateTimeSeparate,
@@ -101,6 +113,10 @@ class _CreateEventState extends State<CreateEvent> {
                     return null;
                   },
                   // onSaved: (val) => setState(() => _valueChanged1 = val!),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Event End Date'),
                 ),
                 DateTimePicker(
                   type: DateTimePickerType.dateTimeSeparate,
