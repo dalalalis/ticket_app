@@ -12,21 +12,13 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Center(
             child: ElevatedButton(
                 onPressed: () {
                   context.push('/eventlist/create');
                 },
                 child: Text('Create Event'))),
-        // Center(
-        //     child: ElevatedButton(
-        //         onPressed: () {
-        //           context.push('');
-        //         },
-        //         child: Text('Logout'))),
         Center(
             child: ElevatedButton(
                 onPressed: () {
@@ -60,14 +52,21 @@ class ProfilePage extends StatelessWidget {
               child: Text("Signin")),
         ),
         Center(
+            child: ElevatedButton(
+          onPressed: () {
+            context.pop();
+          },
+          child: Text("Sell Your Ticket"),
+        )),
+        Center(
           child: ElevatedButton(
             onPressed: () {
               context.read<AuthProvider>().logout();
             },
             child: Text("Signout"),
           ),
-        )
-      ],
-    ));
+        ),
+      ]),
+    );
   }
 }
