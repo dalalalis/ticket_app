@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ticket_app/models/ticket.dart';
 
 class TicketPage extends StatelessWidget {
-  const TicketPage({super.key});
+  TicketPage({super.key, required this.ticket});
+  final Tickets ticket;
 
   @override
   Widget build(BuildContext context) {

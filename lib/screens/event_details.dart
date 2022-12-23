@@ -37,7 +37,8 @@ class _EventDetailsState extends State<EventDetails> {
           isAlwaysShown: true,
           child: ListView.builder(
             itemCount: context.watch<TicketProvider>().tickets.length,
-            itemBuilder: ((context, index) => TicketPage()),
+            itemBuilder: ((context, index) => TicketPage(
+                ticket: context.watch<TicketProvider>().tickets[index])),
           ),
         ));
   }
