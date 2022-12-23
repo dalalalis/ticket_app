@@ -14,7 +14,7 @@ class EventProvider extends ChangeNotifier {
     try {
       notifyListeners();
       events.clear();
-      var response = await Client.dio.get('/event/');
+      var response = await Client.dio.get('/events/');
 
       var eventsJsonList = response.data as List;
       events =
@@ -36,7 +36,7 @@ class EventProvider extends ChangeNotifier {
     required DateTime enddate,
   }) async {
     try {
-      var response = await Client.dio.post('',
+      var response = await Client.dio.post('/events/',
           data: FormData.fromMap({
             'title': title,
             'image': await MultipartFile.fromFile(image.path),

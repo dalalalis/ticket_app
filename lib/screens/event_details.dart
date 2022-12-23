@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:ticket_app/providers/ticket_provider.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 import 'package:ticket_app/widgets/ticket.dart';
 
@@ -34,7 +36,7 @@ class _EventDetailsState extends State<EventDetails> {
         body: Scrollbar(
           isAlwaysShown: true,
           child: ListView.builder(
-            itemCount: 50,
+            itemCount: context.watch<TicketProvider>().tickets.length,
             itemBuilder: ((context, index) => TicketPage()),
           ),
         ));

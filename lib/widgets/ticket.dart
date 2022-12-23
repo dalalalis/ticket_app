@@ -24,12 +24,6 @@ class TicketPage extends StatelessWidget {
             child: Column(
               children: [
                 Spacer(),
-                Image(
-                  image: AssetImage('lib/assets/img_1.png'),
-                  height: 100,
-                  width: 140,
-                ),
-                Spacer(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
