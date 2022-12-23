@@ -19,7 +19,6 @@ import 'package:ticket_app/screens/viewall_event_page.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 
 void main() async {
-  //----------> code missing check previous project
   WidgetsFlutterBinding.ensureInitialized();
 
   if (Platform.isAndroid) {
@@ -34,13 +33,16 @@ void main() async {
 
   runApp(MyApp(
     authProvider: authProvider,
-    intitialRoute: authorized ? "/" : "/signup",
+    intitialRoute: authorized ? "/" : "/",
   ));
 }
 
 final router = GoRouter(routes: [
+  GoRoute(path: '/', builder: ((context, state) => Signin())),
+  GoRoute(path: '/signup', builder: ((context, state) => Signup())),
   GoRoute(
-      path: '/', builder: ((context, state) => MyHomePage(title: 'ticket'))),
+      path: '/home',
+      builder: ((context, state) => MyHomePage(title: 'ticket'))),
   GoRoute(path: '/eventlist', builder: ((context, state) => EventListView())),
   GoRoute(
       path: '/eventlist/create', builder: ((context, state) => CreateEvent())),

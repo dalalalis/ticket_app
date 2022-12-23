@@ -59,7 +59,7 @@ class Signin extends StatelessWidget {
                             ); // calling the provider
 
                         if (signed == null) {
-                          context.pop();
+                          context.go('/home');
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text("You did not signin ")));

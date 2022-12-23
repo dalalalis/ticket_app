@@ -57,7 +57,7 @@ class AuthProvider extends ChangeNotifier {
             "password": password,
           });
 
-      var token = response.data["access"];
+      var token = response.data["token"];
 
       Client.dio.options.headers["authorization"] = "Bearer $token";
 
