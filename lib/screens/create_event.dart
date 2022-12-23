@@ -21,7 +21,7 @@ class _CreateEventState extends State<CreateEvent> {
   final titleController = TextEditingController();
   final venueController = TextEditingController();
 
-  final cityController = TextEditingController();
+  final cityController = TextEditingController();GIT 
   final countryController = TextEditingController();
 
   DateTime? _valueChanged1;
