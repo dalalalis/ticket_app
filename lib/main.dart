@@ -38,11 +38,10 @@ void main() async {
 }
 
 final router = GoRouter(routes: [
-  GoRoute(path: '/', builder: ((context, state) => Signin())),
-  GoRoute(path: '/signup', builder: ((context, state) => Signup())),
   GoRoute(
-      path: '/home',
-      builder: ((context, state) => MyHomePage(title: 'ticket'))),
+      path: '/', builder: ((context, state) => MyHomePage(title: 'ticket'))),
+  GoRoute(path: '/home', builder: ((context, state) => Signin())),
+  GoRoute(path: '/signup', builder: ((context, state) => Signup())),
   GoRoute(path: '/eventlist', builder: ((context, state) => EventListView())),
   GoRoute(
       path: '/eventlist/create', builder: ((context, state) => CreateEvent())),
@@ -80,10 +79,13 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
           theme: ThemeData(
-            primaryColor: primary,
-          ),
+              primaryColor: primary,
+              scaffoldBackgroundColor: Styles.bgColor,
+              textTheme: TextTheme(
+                headline1:
+                    TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+              )),
           routerConfig: router),
     );
   }

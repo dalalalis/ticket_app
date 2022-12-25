@@ -12,61 +12,59 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Center(
-            child: ElevatedButton(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("username"),
+      ),
+      body: SafeArea(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    context.push('/eventlist/create');
+                  },
+                  child: Text('Create Event')),
+              ElevatedButton(
+                  onPressed: () {
+                    context.push('/addticket');
+                  },
+                  child: Text('Sell Ticket')),
+              ElevatedButton(
+                  onPressed: () {
+                    context.push('');
+                  },
+                  child: Text('Terms and Conditons')),
+              ElevatedButton(
+                  onPressed: () {
+                    context.push('');
+                  },
+                  child: Text('Contact Us')),
+              ElevatedButton(
+                  onPressed: () {
+                    context.push("/signup");
+                  },
+                  child: Text("Signup")),
+              ElevatedButton(
+                  onPressed: () {
+                    context.push("/signin");
+                  },
+                  child: Text("Signin")),
+              ElevatedButton(
                 onPressed: () {
-                  context.push('/eventlist/create');
+                  context.pop();
                 },
-                child: Text('Create Event'))),
-        Center(
-            child: ElevatedButton(
+                child: Text("Sell Your Ticket"),
+              ),
+              ElevatedButton(
                 onPressed: () {
-                  context.push('/addticket');
+                  context.read<AuthProvider>().logout();
                 },
-                child: Text('Sell Ticket'))),
-        Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  context.push('');
-                },
-                child: Text('Terms and Conditons'))),
-        Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  context.push('');
-                },
-                child: Text('Contact Us'))),
-        Center(
-          child: ElevatedButton(
-              onPressed: () {
-                context.push("/signup");
-              },
-              child: Text("Signup")),
-        ),
-        Center(
-          child: ElevatedButton(
-              onPressed: () {
-                context.push("/signin");
-              },
-              child: Text("Signin")),
-        ),
-        Center(
-            child: ElevatedButton(
-          onPressed: () {
-            context.pop();
-          },
-          child: Text("Sell Your Ticket"),
-        )),
-        Center(
-          child: ElevatedButton(
-            onPressed: () {
-              context.read<AuthProvider>().logout();
-            },
-            child: Text("Signout"),
-          ),
-        ),
-      ]),
+                child: Text("Signout"),
+              ),
+            ]),
+      ),
     );
   }
 }
