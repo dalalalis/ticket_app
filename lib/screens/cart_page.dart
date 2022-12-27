@@ -5,10 +5,15 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:slide_countdown/slide_countdown.dart';
+import 'package:ticket_app/models/ticket.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 
 class CheckoutPage extends StatefulWidget {
-  const CheckoutPage({super.key});
+  const CheckoutPage({
+    Key? key,
+    required this.ticket,
+  }) : super(key: key);
+  final Tickets ticket;
 
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
@@ -49,10 +54,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
             'Order summary',
             style: Styles.headLineStyle,
           ),
-          Text('{Event.name}', style: Styles.headLineStyle2),
-          Text('{Event.venue}', style: Styles.headLineStyle3),
-          Text('{Event.datetime}', style: Styles.headLineStyle3),
-          Text('Terms and Conditions', style: Styles.headLineStyle2),
+          Text('{ticket.event.name}', style: Styles.headLineStyle),
+          Text('{ticket.description}', style: Styles.headLineStyle2),
+          Text('{ticket.deliverymethod}', style: Styles.headLineStyle2),
+          Text('{ticket.Event.venue}', style: Styles.headLineStyle3),
+          Text('{ticket.Event.startdatetime}', style: Styles.headLineStyle3),
+          Text('Terms and Conditions', style: Styles.headLineStyle3),
         ]),
       ),
     );

@@ -67,7 +67,7 @@ class ProfilePage extends StatelessWidget {
                             backgroundColor: Colors.grey[200],
                             foregroundColor: Colors.black),
                         onPressed: () {
-                          context.push('');
+                          context.push('/addticket/');
                         },
                         child: Text('Sell Ticket'))),
                 Center(

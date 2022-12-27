@@ -4,15 +4,18 @@ import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:ticket_app/models/event.dart';
+import 'package:ticket_app/models/ticket.dart';
 import 'package:ticket_app/providers/authprovider.dart';
 import 'package:ticket_app/providers/client.dart';
 import 'package:ticket_app/providers/event_provider.dart';
+import 'package:ticket_app/providers/ticket_provider.dart';
 import 'package:ticket_app/screens/Signin_screen.dart';
 import 'package:ticket_app/screens/bottom_bar.dart';
 import 'package:ticket_app/screens/cart_page.dart';
 import 'package:ticket_app/screens/create_event.dart';
 import 'package:ticket_app/screens/create_ticket.dart';
-import 'package:ticket_app/screens/event_details.dart';
+import 'package:ticket_app/screens/ticket_screen.dart';
 import 'package:ticket_app/screens/home_screen.dart';
 import 'package:ticket_app/screens/signup_screen.dart';
 import 'package:ticket_app/screens/viewall_event_page.dart';
@@ -21,11 +24,11 @@ import 'package:ticket_app/utils/app_styling.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (Platform.isAndroid) {
-    Client.dio.options.baseUrl = "http://10.0.2.2:8000/";
-  } else if (Platform.isIOS) {
-    Client.dio.options.baseUrl = "http://localhost:8000/";
-  }
+  // if (Platform.isAndroid) {
+  //   Client.dio.options.baseUrl = "http://10.0.2.2:8000/";
+  // } else if (Platform.isIOS) {
+  //   Client.dio.options.baseUrl = "http://localhost:8000/";
+  // }
 
   var authProvider = AuthProvider();
   var authorized = await authProvider.hasToken();
@@ -46,10 +49,13 @@ final router = GoRouter(routes: [
   GoRoute(path: '/eventlist', builder: ((context, state) => EventListView())),
   GoRoute(
       path: '/eventlist/create', builder: ((context, state) => CreateEvent())),
-  GoRoute(path: '/cart', builder: ((context, state) => CheckoutPage())),
+  GoRoute(
+      path: '/cart',
+      builder: ((context, state) =>
+          CheckoutPage(ticket: state.extra as Tickets))),
   GoRoute(
       path: '/eventlist/detailed',
-      builder: ((context, state) => EventDetails())),
+      builder: ((context, state) => TicketPage(event: state.extra as Events))),
   GoRoute(
     path: '/signup',
     builder: (context, state) => Signup(),
@@ -73,9 +79,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => authProvider),
-        ChangeNotifierProvider(
-          create: (context) => EventProvider(),
-        ),
+        ChangeNotifierProvider(create: (context) => EventProvider()),
+        ChangeNotifierProvider(create: (context) => TicketProvider()),
         // add the rest of the providers here
       ],
       child: MaterialApp.router(

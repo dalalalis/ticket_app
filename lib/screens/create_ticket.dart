@@ -3,7 +3,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:ticket_app/models/ticket.dart';
 import 'package:ticket_app/providers/event_provider.dart';
+import 'package:ticket_app/providers/ticket_provider.dart';
 
 import '../models/event.dart';
 
@@ -20,7 +22,8 @@ class _AddTicketState extends State<AddTicket> {
   final ticketController = TextEditingController();
 
   final priceController = TextEditingController();
-  Events? selectedValue;
+  Events? selectedEvent;
+  String? selectedDelivery;
   @override
   void initState() {
     EventProvider().loadEvents();
@@ -66,7 +69,7 @@ class _AddTicketState extends State<AddTicket> {
                       ),
                       DropdownButton<Events>(
                         hint: Text('Choose an Event'),
-                        value: selectedValue,
+                        value: selectedEvent,
                         icon: Icon(Icons.arrow_drop_down),
                         items: events
                             .map((e) => DropdownMenuItem<Events>(
@@ -76,34 +79,54 @@ class _AddTicketState extends State<AddTicket> {
                             .toList(),
                         onChanged: (Events? value) {
                           setState(() {
-                            selectedValue = value;
+                            selectedEvent = value;
                           });
                         },
                       ),
                       // ---------------get the provider done and add to the ticket type drop down
-                      DropdownButton<Events>(
+                      DropdownButton(
                         hint: Text('Ticket Type and Delivery '),
-                        value: selectedValue,
+                        value: selectedDelivery,
                         icon: Icon(Icons.arrow_drop_down),
-                        items: events
-                            .map((e) => DropdownMenuItem<Events>(
-                                  child: Text(e.title),
+                        items: [""]
+                            .map((e) => DropdownMenuItem(
+                                  child: Text(e),
                                   value: e,
                                 ))
                             .toList(),
-                        onChanged: (Events? value) {
+                        //>>> how to list all delivery methods
+                        onChanged: (value) {
                           setState(() {
-                            selectedValue = value;
+                            selectedDelivery = value;
                           });
                         },
                       ),
                       Spacer(),
-                      ElevatedButton(
-                        onPressed: () {
-                          context.pop();
-                        },
-                        child: Text('Submit'),
-                      )
+                      // ElevatedButton(onPressed: () async {
+                      //   formKey.currentState!.save();
+                      //   context.pop();
+                      //   if (formKey.currentState!.validate() &&
+                      //       selectedEvent != null &&
+                      //       selectedDelivery != null) ;
+                      //   {
+                      //     await context.read<TicketProvider>().addTicket(
+                      //           // required int id,
+                      //           // required int owner,
+                      //           // required String ticketDetails,
+                      //           ticketDetails: ticketController.text,
+                      //           // required String event,
+                      //           event: selectedEvent.toString(),
+                      //           // required int price,
+                      //           price: int.parse(priceController.text),
+                      //           //>>> parse to int
+                      //           // required bool available,
+                      //           // required File image,
+                      //         );}
+
+                      //     child:
+                      //     Text('Submit');
+                      //   }
+                      // )
                     ])))));
   }
 }

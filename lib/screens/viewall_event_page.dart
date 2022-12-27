@@ -18,21 +18,26 @@ class EventListView extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  context.push('/cart/');
+                  context.push('cart/');
                 },
                 icon: Icon(Icons.shopping_bag_outlined,
                     size: 40, color: Colors.grey))
           ],
         ),
         backgroundColor: Styles.bgColor,
-        body: SafeArea(
-            child: Container(
-                child: ListView.builder(
-          // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //     crossAxisCount: 2, crossAxisSpacing: 12, mainAxisSpacing: 22)
-          itemCount: context.watch<EventProvider>().events.length,
-          itemBuilder: ((context, index) =>
-              EventsView2(event: context.watch<EventProvider>().events[index])),
-        ))));
+        body: RefreshIndicator(
+          onRefresh: () async {
+            await context.read<EventProvider>().loadEvents();
+          },
+          child: SafeArea(
+              child: Container(
+                  child: ListView.builder(
+            // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //     crossAxisCount: 2, crossAxisSpacing: 12, mainAxisSpacing: 22)
+            itemCount: context.watch<EventProvider>().events.length,
+            itemBuilder: ((context, index) => EventsView2(
+                event: context.watch<EventProvider>().events[index])),
+          ))),
+        ));
   }
 }

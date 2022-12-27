@@ -7,7 +7,8 @@ class Tickets {
   String event;
   int price;
   bool available;
-  String image;
+  String deliverymethod;
+  // String image;
 
   Tickets({
     required this.id,
@@ -16,7 +17,8 @@ class Tickets {
     required this.event,
     required this.price,
     required this.available,
-    required this.image,
+    required this.deliverymethod,
+    // required this.image,
   });
 
   Map<String, dynamic> toMap() {
@@ -27,7 +29,8 @@ class Tickets {
       'event': event,
       'price': price,
       'available': available,
-      'image': image,
+      'deliverymethod': deliverymethod,
+      // 'image': image,
     };
   }
 
@@ -39,7 +42,8 @@ class Tickets {
       event: map['event'] ?? '',
       price: map['price']?.toInt() ?? 0,
       available: map['available'] ?? false,
-      image: map['image'] ?? '',
+      deliverymethod: map['deliverymethod'] ?? '',
+      // image: map['image'] ?? '',
     );
   }
 

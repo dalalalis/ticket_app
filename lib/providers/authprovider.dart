@@ -73,7 +73,7 @@ class AuthProvider extends ChangeNotifier {
       print(e);
     }
 
-    return null; // when user couldn't login
+    return 'error'; // when user couldn't login
   }
 
   Future<bool> hasToken() async {

@@ -19,7 +19,7 @@ class EventsView2 extends StatelessWidget {
           child: InkWell(
             onTap: () {
               print('tapped events');
-              context.push('/eventlist/detailed/');
+              context.push('/eventlist/detailed/', extra: event);
               //push to the detailed_event_page.
               //send event id to be used in the detailed page.
             },
