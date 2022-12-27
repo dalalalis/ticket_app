@@ -24,7 +24,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
   @override
   void initState() {
     super.initState();
-    timer = Timer(const Duration(seconds: 10), () {
+    Duration popDuration = Duration(seconds: 10);
+    timer = Timer(popDuration, () {
       context.pop();
 
       /// Navigate to seconds screen when timer callback in executed
