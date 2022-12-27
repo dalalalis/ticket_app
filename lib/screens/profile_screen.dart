@@ -54,7 +54,8 @@ class ProfilePage extends StatelessWidget {
                             backgroundColor: Colors.grey[200],
                             foregroundColor: Colors.black),
                         onPressed: () {
-                          context.push('');
+                          context.read<AuthProvider>().logout();
+                          context.push('/signin/');
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 150, right: 150),
