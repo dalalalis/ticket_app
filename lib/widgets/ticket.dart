@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ticket_app/models/ticket.dart';
+//>>>>>> flutter logic missing
+//====== add number of tickets to django
+//>>>>>> add number of tickets to provider
 
 class TicketWidget extends StatelessWidget {
   TicketWidget({super.key, required this.ticket});
@@ -31,9 +32,9 @@ class TicketWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'nunber of tickets {ticket.quantity}',
+                        'number of tickets {ticket.quantity}',
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 15),
+                            fontWeight: FontWeight.w500, fontSize: 16),
                       ),
                     ],
                   ),
@@ -51,9 +52,11 @@ class TicketWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Seller: ${ticket.owner} ',
-                        style: TextStyle(color: Colors.blueAccent),
+                        style:
+                            TextStyle(color: Colors.blueAccent, fontSize: 14),
                       ),
                       Spacer(),
+                      //======== add to django
                       if (true)
                         Icon(
                           Icons.verified_outlined,
@@ -62,11 +65,12 @@ class TicketWidget extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(6.0),
                     child: Row(
                       children: [
                         Text('${ticket.price} KD',
-                            style: TextStyle(fontWeight: FontWeight.w800)),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w800, fontSize: 17)),
                         Spacer(),
                         Text('not showing delivery${ticket.deliverymethod}'),
                       ],

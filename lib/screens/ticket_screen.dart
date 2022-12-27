@@ -43,7 +43,7 @@ class _TicketPageState extends State<TicketPage> {
             'Available Tickets}',
           ),
           foregroundColor: Colors.grey[800],
-          backgroundColor: Styles.bgColor,
+          backgroundColor: Colors.white,
           // actions: [
           //   // IconButton(
           //   //     onPressed: () {

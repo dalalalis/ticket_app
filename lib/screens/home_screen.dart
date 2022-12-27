@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_app/providers/event_provider.dart';
 import 'package:ticket_app/widgets/event.dart';
-import 'package:ticket_app/widgets/featured_event_view.dart';
+import 'package:ticket_app/widgets/thisweek_event.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 
 //============ django filter for this week events
@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 3,
-                  itemBuilder: (context, index) => EventsView2(
+                  itemBuilder: (context, index) => EventsView(
                       event: context.watch<EventProvider>().events[index]),
 
                   // child: Row(
@@ -133,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [EventView(), EventView()],
+                    children: [WeekEvent(), WeekEvent()],
                   ))
             ],
           ),
