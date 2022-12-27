@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
 import 'package:ticket_app/models/event.dart';
-import 'package:ticket_app/models/ticket.dart';
 import 'package:ticket_app/providers/ticket_provider.dart';
-import 'package:ticket_app/utils/app_styling.dart';
 import 'package:ticket_app/widgets/ticket.dart';
+
+//>>>>>>>>> add binary logic operator if (list is empty ) show a message "No Tickets Available we will notify you once they bceome available "
 
 class TicketPage extends StatefulWidget {
   const TicketPage({
