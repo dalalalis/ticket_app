@@ -1,13 +1,9 @@
-import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:ticket_app/widgets/event.dart';
 import 'package:ticket_app/widgets/featured_event_view.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 
-import '../providers/authprovider.dart';
-
+//============ django filter for this week events
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -47,8 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Container(
-                      height: 60,
-                      width: 80,
+                      height: 80,
+                      width: 90,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
@@ -93,23 +89,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [EventView(), EventView(), EventView()],
                   )),
-//required first 7 events, then view all page
-//view all page takes gridview [check khaled category]
-//-----------------------------add gridview builder---------
 
-              SizedBox(height: 10),
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  //binary logical operator
-                  if (true) Text('Events', style: Styles.headLineStyle2),
+                  // //binary logical operator
+                  // if (true)
+                  Text('This Weeks Events', style: Styles.headLineStyle2),
                   InkWell(
                     onTap: () {
                       print('you are tapping view all');

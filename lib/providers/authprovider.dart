@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'client.dart';
 
+//>>>>>>> add email to provider
 class AuthProvider extends ChangeNotifier {
   String? username;
   int? password;

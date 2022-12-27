@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_app/providers/authprovider.dart';
+
+//>>>>>>>>>>>>>  add logo without border to assets
 
 class Signin extends StatelessWidget {
   Signin({super.key});
@@ -15,11 +15,6 @@ class Signin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white12,
-      //   centerTitle: true,
-      //   title: Text("Signin Page"),
-      // ),
       body: SafeArea(
         child: Center(
           child: Column(
