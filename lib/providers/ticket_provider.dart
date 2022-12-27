@@ -11,11 +11,17 @@ class TicketProvider extends ChangeNotifier {
   TicketProvider() {
     loadTickets();
   }
-  Future<void> loadTickets() async {
+  Future<void> loadTickets({Events? event}) async {
     try {
       notifyListeners();
       tickets.clear();
-      var response = await Client.dio.get('');
+      Response response;
+      if (event != null) {
+        response =
+            await Client.dio.get('/tickets/?param_event_id=${event.id}/');
+      } else {
+        response = await Client.dio.get('/tickets/');
+      }
 
       var ticketsJsonList = response.data as List;
       tickets = ticketsJsonList
@@ -38,7 +44,7 @@ class TicketProvider extends ChangeNotifier {
     required File image,
   }) async {
     try {
-      var response = await Client.dio.post('',
+      var response = await Client.dio.post('tickets/add/',
           data: FormData.fromMap({
             'owner': owner,
             'image': await MultipartFile.fromFile(image.path),

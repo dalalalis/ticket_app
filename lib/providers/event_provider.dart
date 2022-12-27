@@ -26,7 +26,7 @@ class EventProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> addEvent({
+  Future<String?> addEvent({
     required String title,
     required File image,
     required String venue,
@@ -47,8 +47,11 @@ class EventProvider extends ChangeNotifier {
             'country': country,
           }));
       loadEvents();
+      return null;
     } on Exception catch (e) {
       // TODO
+
+      return 'Error';
     }
   }
 }

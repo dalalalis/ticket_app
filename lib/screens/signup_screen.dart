@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_app/providers/authprovider.dart';
+//========== add email to django
+//>>>>>>>>>> add email to the provider
+//>>>>>>>>>>> error registering
 
 class Signup extends StatelessWidget {
   Signup({super.key});
@@ -11,6 +14,7 @@ class Signup extends StatelessWidget {
   final confirmPasswordController = TextEditingController();
   final firstnameController = TextEditingController();
   final lastnameController = TextEditingController();
+  // final emailController= TextEditingController();
 
   var formKey = GlobalKey<FormState>();
 
@@ -18,15 +22,17 @@ class Signup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white12,
-        centerTitle: true,
-        title: Text("Signup"),
+        title: Text(
+          'Register',
+        ),
+        foregroundColor: Colors.grey[800],
+        backgroundColor: Colors.white,
       ),
       body: SafeArea(
         child: Form(
           key: formKey,
           child: Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(80),
             child: Column(
               children: [
                 TextFormField(
@@ -62,6 +68,17 @@ class Signup extends StatelessWidget {
                     return null;
                   },
                 ),
+                // TextFormField(
+                //   controller: emailController,
+                //   decoration:
+                //       InputDecoration(hintText: "Email", labelText: "Email"),
+                //   validator: (value) {
+                //     if (value == null || value.isEmpty) {
+                //       return "Required field";
+                //     }
+                //     return null;
+                //   },
+                // ),
                 TextFormField(
                   controller: passwordController,
                   decoration: InputDecoration(
@@ -91,7 +108,7 @@ class Signup extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: 150,
+                  height: 50,
                 ),
                 ElevatedButton(
                   onPressed: () async {
@@ -101,18 +118,19 @@ class Signup extends StatelessWidget {
                             password: passwordController.text,
                             first_name: firstnameController.text,
                             last_name: lastnameController.text,
+                            // email: emailController.text,
                           );
 
                       if (success) {
-                        context.pop();
+                        context.go('/home');
                       } else {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(SnackBar(content: Text("error")));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("error registering")));
                       }
                     }
                   },
                   style: ElevatedButton.styleFrom(),
-                  child: Text("Signup"),
+                  child: Text("Register"),
                 )
               ],
             ),

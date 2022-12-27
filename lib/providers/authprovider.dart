@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'client.dart';
 
+//>>>>>>> add email to provider
 class AuthProvider extends ChangeNotifier {
   String? username;
   int? password;
@@ -73,7 +72,7 @@ class AuthProvider extends ChangeNotifier {
       print(e);
     }
 
-    return null; // when user couldn't login
+    return 'error'; // when user couldn't login
   }
 
   Future<bool> hasToken() async {

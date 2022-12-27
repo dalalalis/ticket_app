@@ -190,16 +190,36 @@ class _CreateEventState extends State<CreateEvent> {
                         imageFile != null &&
                         _valueChanged1 != null &&
                         _valueChanged2 != null) {
-                      await context.read<EventProvider>().addEvent(
-                            title: titleController.text,
-                            image: imageFile!,
-                            venue: venueController.text,
-                            country: countryController.text,
-                            city: cityController.text,
-                            startdate: _valueChanged1!,
-                            enddate: _valueChanged2!,
-                          );
-                      context.pop();
+                      final result =
+                          await context.read<EventProvider>().addEvent(
+                                title: titleController.text,
+                                image: imageFile!,
+                                venue: venueController.text,
+                                country: countryController.text,
+                                city: cityController.text,
+                                startdate: _valueChanged1!,
+                                enddate: _valueChanged2!,
+                              );
+                      if (result == null) {
+                        context.pop();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              "Event created",
+                            ),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              "cant create event",
+                            ),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
                       //   }
                     }
                   },

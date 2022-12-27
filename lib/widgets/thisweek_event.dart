@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ticket_app/models/event.dart';
 
-class EventView extends StatelessWidget {
-  const EventView({super.key});
+class WeekEvent extends StatelessWidget {
+  const WeekEvent({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class EventView extends StatelessWidget {
               children: [
                 Spacer(),
                 Image(
-                  image: AssetImage('lib/assets/img_1.png'),
+                  image: AssetImage(''),
                   height: 100,
                   width: 140,
                 ),

@@ -1,12 +1,13 @@
-import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:ticket_app/providers/event_provider.dart';
 import 'package:ticket_app/widgets/event.dart';
-import 'package:ticket_app/widgets/featured_event_view.dart';
+import 'package:ticket_app/widgets/thisweek_event.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 
-import '../providers/authprovider.dart';
+//============ django filter for this week events
+//>>>>>>>>>>>> bottom space
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.only(left: 20, right: 20),
           child: Column(
             children: [
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -47,34 +48,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Container(
-                      height: 60,
-                      width: 80,
+                      height: 80,
+                      width: 90,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage('lib/assets/img_1.png'))))
+                              image: AssetImage('lib/assets/logo.png'))))
                 ],
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xFFF4F6FD)),
-                  child: Row(
-                    children: [
-                      Icon(FluentSystemIcons.ic_fluent_search_regular,
-                          color: Color(0xFFBFC205)),
-                      SizedBox(width: 3),
-                      Text(
-                        'Search',
-                        style: Styles.headLineStyle4,
-                      )
-                    ],
-                  ),
-                ),
+                // child: Container(
+                //   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(10),
+                //       color: Color(0xFFF4F6FD)),
+                //   child: Row(
+                //     children: [
+                //       Icon(FluentSystemIcons.ic_fluent_search_regular,
+                //           color: Color(0xFFBFC205)),
+                //       SizedBox(width: 3),
+                //       Text(
+                //         'Search',
+                //         style: Styles.headLineStyle4,
+                //       )
+                //     ],
+                //   ),
+                // ),
               ),
               SizedBox(height: 20),
               Row(
@@ -93,23 +94,30 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
-              SingleChildScrollView(
+              Container(
+                height: 250,
+                width: 350,
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [EventView(), EventView(), EventView()],
-                  )),
-//required first 7 events, then view all page
-//view all page takes gridview [check khaled category]
-//-----------------------------add gridview builder---------
+                  itemCount: 3,
+                  itemBuilder: (context, index) => EventsView(
+                      event: context.watch<EventProvider>().events[index]),
 
-              SizedBox(height: 10),
+                  // child: Row(
+                  // //   children: [EventView(), EventView(), EventView()],
+                  // )
+                ),
+              ),
+
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  //binary logical operator
-                  if (true) Text('Events', style: Styles.headLineStyle2),
+                  // //binary logical operator
+                  // if (true)
+                  Text('This Weeks Events', style: Styles.headLineStyle2),
                   InkWell(
                     onTap: () {
                       print('you are tapping view all');
@@ -125,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [EventView(), EventView()],
+                    children: [WeekEvent(), WeekEvent()],
                   ))
             ],
           ),

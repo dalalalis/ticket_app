@@ -36,17 +36,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Styles.bgColor,
-        actions: [
-          IconButton(
-              onPressed: () {
-                context.push('/cart/');
-              },
-              icon: Icon(Icons.shopping_bag_outlined,
-                  size: 40, color: Colors.grey))
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Styles.bgColor,
+      //   actions: [
+      //     IconButton(
+      //         onPressed: () {
+      //           context.push('/cart/');
+      //         },
+      //         icon: Icon(Icons.shopping_bag_outlined,
+      //             size: 40, color: Colors.grey))
+      //   ],
+      // ),
       // appBar: AppBar(
       //   title: Text('Ticket'),
 
@@ -57,8 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
           elevation: 10,
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          selectedItemColor: Colors.grey,
-          unselectedItemColor: const Color(0xFF526480),
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Color.fromARGB(255, 70, 86, 110),
           type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
