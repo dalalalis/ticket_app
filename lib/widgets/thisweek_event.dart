@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ticket_app/models/event.dart';
 
-class EventView extends StatelessWidget {
-  const EventView({
+class WeekEvent extends StatelessWidget {
+  const WeekEvent({
     super.key,
   });
 

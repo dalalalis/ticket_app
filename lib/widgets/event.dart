@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 
 //>>>>>>>> add beautificaions to image
 //========= django date time doesnt loook nice
-class EventsView2 extends StatelessWidget {
-  const EventsView2({super.key, required this.event});
+class EventsView extends StatelessWidget {
+  const EventsView({super.key, required this.event});
   // required this.event;
   final Events event;
 

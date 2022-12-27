@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:ticket_app/providers/event_provider.dart';
+import 'package:ticket_app/widgets/event.dart';
 import 'package:ticket_app/widgets/featured_event_view.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 
 //============ django filter for this week events
+//>>>>>>>>>>>> bottom space
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -91,11 +96,20 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 20,
               ),
-              SingleChildScrollView(
+              Container(
+                height: 250,
+                width: 350,
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [EventView(), EventView(), EventView()],
-                  )),
+                  itemCount: 3,
+                  itemBuilder: (context, index) => EventsView2(
+                      event: context.watch<EventProvider>().events[index]),
+
+                  // child: Row(
+                  // //   children: [EventView(), EventView(), EventView()],
+                  // )
+                ),
+              ),
 
               SizedBox(height: 20),
               Row(
