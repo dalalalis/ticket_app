@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.only(left: 20, right: 20),
           child: Column(
             children: [
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -53,28 +53,28 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage('lib/assets/img_1.png'))))
+                              image: AssetImage('lib/assets/logo.png'))))
                 ],
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xFFF4F6FD)),
-                  child: Row(
-                    children: [
-                      Icon(FluentSystemIcons.ic_fluent_search_regular,
-                          color: Color(0xFFBFC205)),
-                      SizedBox(width: 3),
-                      Text(
-                        'Search',
-                        style: Styles.headLineStyle4,
-                      )
-                    ],
-                  ),
-                ),
+                // child: Container(
+                //   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(10),
+                //       color: Color(0xFFF4F6FD)),
+                //   child: Row(
+                //     children: [
+                //       Icon(FluentSystemIcons.ic_fluent_search_regular,
+                //           color: Color(0xFFBFC205)),
+                //       SizedBox(width: 3),
+                //       Text(
+                //         'Search',
+                //         style: Styles.headLineStyle4,
+                //       )
+                //     ],
+                //   ),
+                // ),
               ),
               SizedBox(height: 20),
               Row(

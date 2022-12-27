@@ -36,17 +36,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Styles.bgColor,
-        actions: [
-          IconButton(
-              onPressed: () {
-                context.push('/cart/');
-              },
-              icon: Icon(Icons.shopping_bag_outlined,
-                  size: 40, color: Colors.grey))
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Styles.bgColor,
+      //   actions: [
+      //     IconButton(
+      //         onPressed: () {
+      //           context.push('/cart/');
+      //         },
+      //         icon: Icon(Icons.shopping_bag_outlined,
+      //             size: 40, color: Colors.grey))
+      //   ],
+      // ),
       // appBar: AppBar(
       //   title: Text('Ticket'),
 

@@ -15,14 +15,14 @@ class EventListView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Styles.bgColor,
-          actions: [
-            IconButton(
-                onPressed: () {
-                  context.push('cart/');
-                },
-                icon: Icon(Icons.shopping_bag_outlined,
-                    size: 40, color: Colors.grey))
-          ],
+          // actions: [
+          //   IconButton(
+          //       onPressed: () {
+          //         context.push('cart/');
+          //       },
+          //       icon: Icon(Icons.shopping_bag_outlined,
+          //           size: 40, color: Colors.grey))
+          // ],
         ),
         backgroundColor: Styles.bgColor,
         body: RefreshIndicator(

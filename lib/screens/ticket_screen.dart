@@ -44,14 +44,14 @@ class _TicketPageState extends State<TicketPage> {
           ),
           foregroundColor: Colors.grey[800],
           backgroundColor: Styles.bgColor,
-          actions: [
-            IconButton(
-                onPressed: () {
-                  context.push('/cart/');
-                },
-                icon: Icon(Icons.shopping_bag_outlined,
-                    size: 40, color: Colors.grey))
-          ],
+          // actions: [
+          //   // IconButton(
+          //   //     onPressed: () {
+          //   //       context.push('/cart/');
+          //   //     },
+          //   //     icon: Icon(Icons.shopping_bag_outlined,
+          //   //         size: 40, color: Colors.grey))
+          // ],
         ),
         body: Column(
           children: [
@@ -62,19 +62,22 @@ class _TicketPageState extends State<TicketPage> {
             //         children: [Text('')],
             //       )
             //     ])),
-            Container(
-              child: Expanded(
-                child: Scrollbar(
-                  isAlwaysShown: true,
-                  child: ListView.builder(
-                    itemCount: context.watch<TicketProvider>().tickets.length,
-                    itemBuilder: ((context, index) => TicketWidget(
-                        ticket:
-                            context.watch<TicketProvider>().tickets[index])),
+            //>>>>>>>>>>>>>>>>>>>> add if false message (No available tickets we will notify you once they become available)
+
+            if (true)
+              Container(
+                child: Expanded(
+                  child: Scrollbar(
+                    isAlwaysShown: true,
+                    child: ListView.builder(
+                      itemCount: context.watch<TicketProvider>().tickets.length,
+                      itemBuilder: ((context, index) => TicketWidget(
+                          ticket:
+                              context.watch<TicketProvider>().tickets[index])),
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ));
   }
