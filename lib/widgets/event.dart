@@ -17,7 +17,8 @@ class EventsView extends StatelessWidget {
       child: Card(
         child: InkWell(
           onTap: () {
-            print('tapped events');
+            print('+++++++++');
+            print(event.id);
             context.push('/eventlist/detailed/', extra: event);
             //push to the detailed_event_page.
             //send event id to be used in the detailed page.

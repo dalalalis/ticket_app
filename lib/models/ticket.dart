@@ -3,21 +3,21 @@ import 'dart:convert';
 class Tickets {
   int? id;
   String owner;
-  String ticketDetails;
+  String ticketdetails;
   String event;
   int price;
   bool available;
-  String deliverymethod;
+  String delivery;
   // String image;
 
   Tickets({
     required this.id,
     required this.owner,
-    required this.ticketDetails,
+    required this.ticketdetails,
     required this.event,
     required this.price,
     required this.available,
-    required this.deliverymethod,
+    required this.delivery,
     // required this.image,
   });
 
@@ -25,11 +25,11 @@ class Tickets {
     return {
       'id': id,
       'owner': owner,
-      'ticketDetails': ticketDetails,
+      'ticketdetails': ticketdetails,
       'event': event,
       'price': price,
       'available': available,
-      'deliverymethod': deliverymethod,
+      'delivery': delivery,
       // 'image': image,
     };
   }
@@ -38,11 +38,11 @@ class Tickets {
     return Tickets(
       id: map['id']?.toInt(),
       owner: map['owner'] ?? '',
-      ticketDetails: map['ticketDetails'] ?? '',
+      ticketdetails: map['ticketdetails'] ?? '',
       event: map['event'] ?? '',
       price: map['price']?.toInt() ?? 0,
       available: map['available'] ?? false,
-      deliverymethod: map['deliverymethod'] ?? '',
+      delivery: map['delivery'] ?? '',
       // image: map['image'] ?? '',
     );
   }

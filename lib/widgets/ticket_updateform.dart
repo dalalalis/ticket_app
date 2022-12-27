@@ -7,22 +7,21 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_app/models/ticket.dart';
-import 'package:ticket_app/providers/authprovider.dart';
 import 'package:ticket_app/providers/event_provider.dart';
 import 'package:ticket_app/providers/ticket_provider.dart';
 
 import '../models/event.dart';
 
-class AddTicket extends StatefulWidget {
-  AddTicket({super.key});
+class UpdateTicketForm extends StatefulWidget {
+  final Tickets ticket;
+  const UpdateTicketForm({super.key, required this.ticket});
 
   @override
-  State<AddTicket> createState() => _AddTicketState();
+  State<UpdateTicketForm> createState() => _UpdateTicketFormState();
 }
 
-class _AddTicketState extends State<AddTicket> {
-  var formKey = GlobalKey<FormState>();
-
+class _UpdateTicketFormState extends State<UpdateTicketForm> {
+  final _formKey = GlobalKey<FormState>();
   final ticketController = TextEditingController();
 
   final priceController = TextEditingController();
@@ -30,21 +29,19 @@ class _AddTicketState extends State<AddTicket> {
   String? imageError;
   Events? selectedEvent;
   String? selectedDelivery;
+
   @override
   void initState() {
     EventProvider().loadEvents();
     super.initState();
   }
 
-  @override
   Widget build(BuildContext context) {
-    List<Events> events;
-    events = context.watch<EventProvider>().events;
+    Tickets ticket = widget.ticket;
     return Scaffold(
-        appBar: AppBar(title: Text('Add Ticket For Sale')),
         body: SafeArea(
             child: Form(
-                key: formKey,
+                key: _formKey,
                 child: Padding(
                     padding: const EdgeInsets.all(30.0),
                     child: Column(children: [
@@ -77,7 +74,9 @@ class _AddTicketState extends State<AddTicket> {
                         hint: Text('Choose an Event'),
                         value: selectedEvent,
                         icon: Icon(Icons.arrow_drop_down),
-                        items: events
+                        items: context
+                            .read<EventProvider>()
+                            .events
                             .map((e) => DropdownMenuItem<Events>(
                                   child: Text(e.title),
                                   value: e,
@@ -148,56 +147,30 @@ class _AddTicketState extends State<AddTicket> {
                       Spacer(),
                       ElevatedButton(
                           onPressed: () async {
-                            formKey.currentState!.save();
-                            if (imageFile == null) {
-                              setState(() {
-                                imageError = "Required field";
-                              });
-                            }
-                            if (formKey.currentState!.validate() &&
-                                selectedEvent != null &&
-                                selectedDelivery != null &&
-                                imageFile != null) {
-                              final result = await context
-                                  .read<TicketProvider>()
-                                  .addTicket(
-                                    // required int id,
-                                    // id:,
-                                    // owner: context.read<AuthProvider>(),
-                                    // required String ticketdetails,
-                                    ticketdetails: ticketController.text,
-                                    // required String event,
-                                    event: selectedEvent!.id!,
-                                    // required int price,
-                                    price: int.parse(priceController.text),
-                                    //>>> parse to int
-                                    available: true,
-                                    image: imageFile!,
-                                    delivery: selectedDelivery!,
-                                  );
-                              if (result == null) {
-                                context.pop();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      "Event created",
-                                    ),
-                                    backgroundColor: Colors.green,
-                                  ),
-                                );
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      "cant create event",
-                                    ),
-                                    backgroundColor: Colors.red,
-                                  ),
-                                );
-                              }
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
+                              context.pop();
+                              //   ScaffoldMessenger.of(context).showSnackBar(
+                              //     SnackBar(
+                              //       content: Text(
+                              //         "ticket posted",
+                              //       ),
+                              //       backgroundColor: Colors.green,
+                              //     ),
+                              //   );
+                              // } else {
+                              //   ScaffoldMessenger.of(context).showSnackBar(
+                              //     SnackBar(
+                              //       content: Text(
+                              //         "error",
+                              //       ),
+                              //       backgroundColor: Colors.red,
+                              //     ),
+                              //   );
+                              // }
                             }
                           },
-                          child: Text('sell'))
+                          child: Text('update ticket'))
                     ])))));
   }
 }

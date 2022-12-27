@@ -20,7 +20,6 @@ class TicketWidget extends StatelessWidget {
         child: Card(
           child: InkWell(
             onTap: () {
-              print('tapped ticket');
               context.push('/cart/', extra: ticket);
               //push to the detailed_event_page.
               //send event id to be used in the detailed page.
@@ -41,7 +40,7 @@ class TicketWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'not showing${ticket.ticketDetails}',
+                        '${ticket.ticketdetails}',
                         style: TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 20),
                       ),
@@ -72,7 +71,7 @@ class TicketWidget extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.w800, fontSize: 17)),
                         Spacer(),
-                        Text('not showing delivery${ticket.deliverymethod}'),
+                        Text('${ticket.delivery}'),
                       ],
                     ),
                   )

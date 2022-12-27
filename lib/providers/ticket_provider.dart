@@ -17,8 +17,7 @@ class TicketProvider extends ChangeNotifier {
       tickets.clear();
       Response response;
       if (event != null) {
-        response =
-            await Client.dio.get('/tickets/?param_event_id=${event.id}/');
+        response = await Client.dio.get('/tickets/?event_id=${event.id}/');
       } else {
         response = await Client.dio.get('/tickets/');
       }
@@ -34,29 +33,40 @@ class TicketProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> addTicket({
-    required int id,
-    required int owner,
-    required String ticketDetails,
-    required String event,
+  Future<String?> addTicket({
+    // required int id,
+    // required int owner,
+    required String ticketdetails,
+    required int event,
     required int price,
     required bool available,
     required File image,
+    required String delivery,
   }) async {
     try {
       var response = await Client.dio.post('tickets/add/',
           data: FormData.fromMap({
-            'owner': owner,
+            // 'owner': owner,
             'image': await MultipartFile.fromFile(image.path),
             'event': event,
-            'ticketDetails': ticketDetails,
-            'price': price,
-            'available': available,
-            'id': id,
+            'ticketdetails': ticketdetails,
+            'price': price.toString(),
+            'available': available.toString(),
+            // 'id': id,
+            'delivery': delivery
           }));
       loadTickets();
-    } on Exception catch (e) {
+      return null;
+    } on DioError catch (e, st) {
+      print(e);
+      print(st);
+      print(e.response!.data);
+    } on Exception catch (e, st) {
       // TODO
+      print(e);
+      print(st);
+
+      return 'Error';
     }
   }
 }

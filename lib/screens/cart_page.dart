@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:ticket_app/models/ticket.dart';
+import 'package:ticket_app/providers/ticket_provider.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -21,10 +23,10 @@ class CheckoutPage extends StatefulWidget {
 
 class _CheckoutPageState extends State<CheckoutPage> {
   Timer? timer;
+  Duration popDuration = Duration(seconds: 20);
   @override
   void initState() {
     super.initState();
-    Duration popDuration = Duration(seconds: 10);
     timer = Timer(popDuration, () {
       context.pop();
 
@@ -47,7 +49,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       appBar: AppBar(
           backgroundColor: Styles.bgColor,
           title: SlideCountdown(
-            duration: Duration(seconds: 10),
+            duration: popDuration,
           )),
       body: Container(
         child: Column(children: [
@@ -55,11 +57,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
             'Order summary',
             style: Styles.headLineStyle,
           ),
-          Text('{ticket.event.name}', style: Styles.headLineStyle),
-          Text('{ticket.description}', style: Styles.headLineStyle2),
-          Text('{ticket.deliverymethod}', style: Styles.headLineStyle2),
-          Text('{ticket.Event.venue}', style: Styles.headLineStyle3),
-          Text('{ticket.Event.startdatetime}', style: Styles.headLineStyle3),
+          Text('${widget.ticket.event}', style: Styles.headLineStyle),
+          Text('${widget.ticket.owner}', style: Styles.headLineStyle2),
+          Text('${widget.ticket.delivery}', style: Styles.headLineStyle2),
+          Text('${widget.ticket.event}', style: Styles.headLineStyle3),
+          Text('${widget.ticket.price}', style: Styles.headLineStyle3),
           Text('Terms and Conditions', style: Styles.headLineStyle3),
         ]),
       ),

@@ -197,8 +197,8 @@ class _CreateEventState extends State<CreateEvent> {
                                 venue: venueController.text,
                                 country: countryController.text,
                                 city: cityController.text,
-                                startdate: _valueChanged1!,
-                                enddate: _valueChanged2!,
+                                startDate: _valueChanged1!,
+                                endDate: _valueChanged2!,
                               );
                       if (result == null) {
                         context.pop();
