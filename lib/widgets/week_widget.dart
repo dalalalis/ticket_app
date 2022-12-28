@@ -26,7 +26,7 @@ class WeekEvent1 extends StatelessWidget {
                   height: 99,
                   width: 300,
                   child: Image(
-                    fit: BoxFit.contain,
+                    fit: BoxFit.cover,
                     image: AssetImage('lib/assets/newyearwalk.jpeg'),
                   ),
                 ),

@@ -7,14 +7,16 @@ import 'package:ticket_app/models/ticket.dart';
 import 'package:ticket_app/providers/authprovider.dart';
 import 'package:ticket_app/providers/client.dart';
 import 'package:ticket_app/providers/event_provider.dart';
+import 'package:ticket_app/providers/myticket_provider.dart';
 import 'package:ticket_app/providers/ticket_provider.dart';
 import 'package:ticket_app/screens/Signin_screen.dart';
 import 'package:ticket_app/screens/bottom_bar.dart';
 import 'package:ticket_app/screens/cart_page.dart';
+import 'package:ticket_app/screens/contact_us_page.dart';
 import 'package:ticket_app/screens/create_event.dart';
 import 'package:ticket_app/screens/create_ticket.dart';
 import 'package:ticket_app/screens/myorders_screen.dart';
-import 'package:ticket_app/screens/mytickets_page.dart';
+import 'package:ticket_app/screens/mytickets_screen.dart';
 import 'package:ticket_app/screens/ticket_screen.dart';
 import 'package:ticket_app/screens/home_screen.dart';
 import 'package:ticket_app/screens/signup_screen.dart';
@@ -58,7 +60,7 @@ class MyApp extends StatelessWidget {
         GoRoute(path: '/signup', builder: ((context, state) => Signup())),
         GoRoute(
             path: '/home',
-            builder: ((context, state) => MyHomePage(title: 'ticket'))),
+            builder: ((context, state) => MyHomePage(title: 'homepage'))),
         GoRoute(
             path: '/eventlist', builder: ((context, state) => EventListView())),
         GoRoute(
@@ -94,6 +96,10 @@ class MyApp extends StatelessWidget {
           path: '/mytickets/sale',
           builder: (context, state) => MyTickets(),
         ),
+        GoRoute(
+          path: '/contactus',
+          builder: (context, state) => ContactPage(),
+        ),
       ],
     );
 
@@ -102,6 +108,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => authProvider),
         ChangeNotifierProvider(create: (context) => EventProvider()),
         ChangeNotifierProvider(create: (context) => TicketProvider()),
+        ChangeNotifierProvider(create: (context) => MyTicketProvider()),
+
         // add the rest of the providers here
       ],
       child: MaterialApp.router(

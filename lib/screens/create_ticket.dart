@@ -1,16 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:ticket_app/models/ticket.dart';
-import 'package:ticket_app/providers/authprovider.dart';
 import 'package:ticket_app/providers/event_provider.dart';
 import 'package:ticket_app/providers/ticket_provider.dart';
-
 import '../models/event.dart';
 
 class AddTicket extends StatefulWidget {

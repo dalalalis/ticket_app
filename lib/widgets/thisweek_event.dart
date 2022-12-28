@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:ticket_app/models/event.dart';
 
 class WeekEvent extends StatelessWidget {
-  const WeekEvent({
+  WeekEvent({
     super.key,
   });
 
@@ -17,14 +17,14 @@ class WeekEvent extends StatelessWidget {
         child: Card(
           child: InkWell(
             onTap: () {
-              context.push('/eventlist/detailed/');
+              context.push('');
               print('tapped events');
             },
             child: Column(
               children: [
                 Spacer(),
                 Image(
-                  image: AssetImage(''),
+                  image: AssetImage('lib/assets/newyear.jpeg'),
                   height: 100,
                   width: 140,
                 ),
@@ -32,12 +32,13 @@ class WeekEvent extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
-                    "Event Name",
+                    "Newyear Party",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
-                Text('venues'),
-                Text('location Country')
+                Text('Marina Hotel'),
+                Text('Kuwait'),
+                Text('2022-12-31')
               ],
             ),
           ),

@@ -1,13 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:ticket_app/models/ticket.dart';
-import 'package:ticket_app/providers/ticket_provider.dart';
 import 'package:ticket_app/utils/app_styling.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -63,6 +58,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
           Text('${widget.ticket.event}', style: Styles.headLineStyle3),
           Text('${widget.ticket.price}', style: Styles.headLineStyle3),
           Text('Terms and Conditions', style: Styles.headLineStyle3),
+          ElevatedButton(
+            onPressed: () async {
+              // await context.read<OrderProvider>().addOrder(ticket: widget.ticket)
+            },
+            child: Text('data'),
+          )
         ]),
       ),
     );

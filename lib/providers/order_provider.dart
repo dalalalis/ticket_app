@@ -16,7 +16,7 @@ class OrderProvider extends ChangeNotifier {
     try {
       notifyListeners();
       orders.clear();
-      var response = await Client.dio.get('');
+      var response = await Client.dio.get('/orders/');
 
       var ordersJsonList = response.data as List;
       orders =
@@ -33,9 +33,9 @@ class OrderProvider extends ChangeNotifier {
     required int buyer,
   }) async {
     try {
-      var response = await Client.dio.post('',
+      var response = await Client.dio.post('/orders/add',
           data: FormData.fromMap({
-            'ticket': ticket,
+            'ticket': ticket.toString(),
             'buyer': buyer,
           }));
 

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_app/utils/app_styling.dart';
@@ -8,7 +6,7 @@ import 'package:ticket_app/utils/app_styling.dart';
 import '../providers/authprovider.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +18,7 @@ class ProfilePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(Icons.face_rounded, size: 100),
-            Text('{User.name}', style: Styles.headLineStyle)
+            Text('Profile', style: Styles.headLineStyle)
           ],
         ),
         Expanded(
@@ -89,7 +87,7 @@ class ProfilePage extends StatelessWidget {
               Center(
                   child: ElevatedButton(
                       onPressed: () {
-                        context.push('');
+                        context.push('/contactus/');
                       },
                       child: Text('contact us'),
                       style: ElevatedButton.styleFrom(

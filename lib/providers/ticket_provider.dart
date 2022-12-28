@@ -17,7 +17,8 @@ class TicketProvider extends ChangeNotifier {
       tickets.clear();
       Response response;
       if (event != null) {
-        response = await Client.dio.get('/tickets/?event_id=${event.id}/');
+        print(event.id);
+        response = await Client.dio.get('/tickets/?event_id=${event.id}');
       } else {
         response = await Client.dio.get('/tickets/');
       }
@@ -68,5 +69,10 @@ class TicketProvider extends ChangeNotifier {
 
       return 'Error';
     }
+  }
+
+  void deleteMyTicket(int ticket) async {
+    await Client.dio.delete('/ticket/delete/${ticket}');
+    loadTickets();
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-
-import '../utils/app_styling.dart';
+import 'package:provider/provider.dart';
+import 'package:ticket_app/providers/order_provider.dart';
 
 class MyTicketView extends StatefulWidget {
   const MyTicketView({super.key});
@@ -37,17 +36,23 @@ class _MyTicketViewState extends State<MyTicketView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(shrinkWrap: true, children: [
-      TabBar(
-        controller: _tabController,
-        tabs: _iconTabs,
-        unselectedLabelColor: Colors.black,
-        labelColor: _selectedColor,
-        indicator: BoxDecoration(
-          borderRadius: BorderRadius.circular(80.0),
-          color: _selectedColor.withOpacity(0.2),
+        body: Column(children: [
+      ListView(shrinkWrap: true, children: [
+        TabBar(
+          controller: _tabController,
+          tabs: _iconTabs,
+          unselectedLabelColor: Colors.black,
+          labelColor: _selectedColor,
+          indicator: BoxDecoration(
+            borderRadius: BorderRadius.circular(80.0),
+            color: _selectedColor.withOpacity(0.2),
+          ),
         ),
-      ),
+      ]),
+      //   ListView.builder(
+      //     // itemBuilder:(context, index) =>
+      //   // context.watch<OrderProvider>().orders[index])],
+      // )
     ]));
   }
 }
