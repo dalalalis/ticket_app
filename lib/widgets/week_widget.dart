@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ticket_app/models/event.dart';
 
-class WeekEvent extends StatelessWidget {
-  WeekEvent({
+class WeekEvent1 extends StatelessWidget {
+  WeekEvent1({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 215,
+      width: 200,
       height: 200,
       child: Container(
         height: 10,
@@ -22,23 +22,25 @@ class WeekEvent extends StatelessWidget {
             },
             child: Column(
               children: [
-                Image(
-                  fit: BoxFit.fill,
-                  image: AssetImage('lib/assets/newyear.jpeg'),
-                  height: 100,
-                  width: 200,
+                SizedBox(
+                  height: 99,
+                  width: 300,
+                  child: Image(
+                    fit: BoxFit.cover,
+                    image: AssetImage('lib/assets/newyearwalk.jpeg'),
+                  ),
                 ),
                 Spacer(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
-                    "Newyear Party",
+                    "Jan 1st Marathon",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
-                Text('Marina Hotel'),
+                Text('Souq Sharq'),
                 Text('Kuwait'),
-                Text('2022-12-31')
+                Text('2023-01-01')
               ],
             ),
           ),

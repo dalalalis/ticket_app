@@ -1,13 +1,9 @@
 import 'dart:io';
-
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/event_provider.dart';
 
 class CreateEvent extends StatefulWidget {
@@ -33,7 +29,11 @@ class _CreateEventState extends State<CreateEvent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add Event')),
+      appBar: AppBar(
+        title: Text('Add Event'),
+        foregroundColor: Colors.grey[800],
+        backgroundColor: Colors.white,
+      ),
       body: SafeArea(
         child: Form(
           key: formKey,
@@ -197,8 +197,8 @@ class _CreateEventState extends State<CreateEvent> {
                                 venue: venueController.text,
                                 country: countryController.text,
                                 city: cityController.text,
-                                startdate: _valueChanged1!,
-                                enddate: _valueChanged2!,
+                                startDate: _valueChanged1!,
+                                endDate: _valueChanged2!,
                               );
                       if (result == null) {
                         context.pop();

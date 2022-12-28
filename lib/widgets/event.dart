@@ -17,17 +17,18 @@ class EventsView extends StatelessWidget {
       child: Card(
         child: InkWell(
           onTap: () {
-            print('tapped events');
+            print('+++++++++');
+            print(event.id);
             context.push('/eventlist/detailed/', extra: event);
             //push to the detailed_event_page.
             //send event id to be used in the detailed page.
           },
           child: Column(
             children: [
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              SizedBox(
+                height: 120,
                 child: Image(
+                  fit: BoxFit.contain,
                   image: NetworkImage("${event.image}"),
                   height: 100,
                   width: 200,

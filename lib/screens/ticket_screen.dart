@@ -36,7 +36,7 @@ class _TicketPageState extends State<TicketPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            'Available Tickets}',
+            'Available Tickets',
           ),
           foregroundColor: Colors.grey[800],
           backgroundColor: Colors.white,

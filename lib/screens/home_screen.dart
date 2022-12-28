@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:ticket_app/providers/authprovider.dart';
 import 'package:ticket_app/providers/event_provider.dart';
 import 'package:ticket_app/widgets/event.dart';
 import 'package:ticket_app/widgets/thisweek_event.dart';
 import 'package:ticket_app/utils/app_styling.dart';
+import 'package:ticket_app/widgets/week_widget.dart';
 
 //============ django filter for this week events
 //>>>>>>>>>>>> bottom space
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  HomeScreen({
+    super.key,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -37,13 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           children: [
                             Text(
-                              'Hello {user.name}',
-                              style: Styles.headLineStyle3,
+                              'Hala ${context.watch<AuthProvider>().username}',
+                              // 'Hello ${widget.authProvider}',
+
+                              style: Styles.headLineStyle2,
                             ),
                           ],
                         ),
                         SizedBox(height: 7),
-                        Text('Start Booking', style: Styles.headLineStyle),
+                        Text('Book and Enjoy!', style: Styles.headLineStyle),
                       ],
                     ),
                   ),
@@ -131,9 +137,12 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 10),
               //list view inside a container (add height)
               SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    left: 3,
+                  ),
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [WeekEvent(), WeekEvent()],
+                    children: [WeekEvent(), WeekEvent1()],
                   ))
             ],
           ),

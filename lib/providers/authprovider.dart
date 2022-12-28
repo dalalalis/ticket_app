@@ -80,15 +80,18 @@ class AuthProvider extends ChangeNotifier {
     var preferences = await SharedPreferences.getInstance();
     var token = preferences.getString("token");
 
-    if (token != null && JwtDecoder.isExpired(token)) {
+    if (token != null && !JwtDecoder.isExpired(token)) {
       var tokenMap = JwtDecoder.decode(token); // converting the token to map
       username = tokenMap["username"];
+
+      Client.dio.options.headers["authorization"] = "Bearer $token";
+
       return true;
     }
     return false;
   }
 
-  void logout() async {
+  Future<void> logout() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.remove("token");
     username = null;

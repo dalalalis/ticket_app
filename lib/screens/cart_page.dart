@@ -1,8 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:ticket_app/models/ticket.dart';
@@ -21,10 +18,10 @@ class CheckoutPage extends StatefulWidget {
 
 class _CheckoutPageState extends State<CheckoutPage> {
   Timer? timer;
+  Duration popDuration = Duration(seconds: 20);
   @override
   void initState() {
     super.initState();
-    Duration popDuration = Duration(seconds: 10);
     timer = Timer(popDuration, () {
       context.pop();
 
@@ -47,21 +44,77 @@ class _CheckoutPageState extends State<CheckoutPage> {
       appBar: AppBar(
           backgroundColor: Styles.bgColor,
           title: SlideCountdown(
-            duration: Duration(seconds: 10),
+            duration: popDuration,
           )),
       body: Container(
-        child: Column(children: [
-          Text(
-            'Order summary',
-            style: Styles.headLineStyle,
-          ),
-          Text('{ticket.event.name}', style: Styles.headLineStyle),
-          Text('{ticket.description}', style: Styles.headLineStyle2),
-          Text('{ticket.deliverymethod}', style: Styles.headLineStyle2),
-          Text('{ticket.Event.venue}', style: Styles.headLineStyle3),
-          Text('{ticket.Event.startdatetime}', style: Styles.headLineStyle3),
-          Text('Terms and Conditions', style: Styles.headLineStyle3),
-        ]),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: SlideCountdown(
+                duration: Duration(seconds: 10),
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.blue),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Event: ${widget.ticket.event}',
+                        style: Styles.headLineStyle),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Seller: ${widget.ticket.owner}',
+                        style: Styles.headLineStyle2),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Delivery Method: ${widget.ticket.delivery}',
+                        style: Styles.headLineStyle2),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Order Number: ${widget.ticket.id}',
+                        style: Styles.headLineStyle3),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Total Price:${widget.ticket.price}',
+                        style: Styles.headLineStyle3),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                        'Ticket Details: ${widget.ticket.ticketdetails}',
+                        style: Styles.headLineStyle3),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                        'By purchasing the ticket you are accepting the Terms and Conditions',
+                        style: Styles.headLineStyle3),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: ElevatedButton(
+                onPressed: () async {
+                  // await context.read<OrderProvider>().addOrder(ticket: widget.ticket)
+                },
+                child: Text('Purchase Ticket'),
+              ),
+            ),
+            Text('you will redirected to the payment gate way'),
+          ],
+        ),
       ),
     );
   }

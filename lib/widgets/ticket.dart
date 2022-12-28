@@ -20,7 +20,6 @@ class TicketWidget extends StatelessWidget {
         child: Card(
           child: InkWell(
             onTap: () {
-              print('tapped ticket');
               context.push('/cart/', extra: ticket);
               //push to the detailed_event_page.
               //send event id to be used in the detailed page.
@@ -29,21 +28,21 @@ class TicketWidget extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10, right: 10, top: 12),
               child: Column(
                 children: [
+                  // Row(
+                  //   children: [
+                  //     Text(
+                  //       ' ${ticket.ticketdetails}',
+                  //       style: TextStyle(
+                  //           fontWeight: FontWeight.w500, fontSize: 16),
+                  //     ),
+                  //   ],
+                  // ),
                   Row(
                     children: [
                       Text(
-                        'number of tickets {ticket.quantity}',
+                        '${ticket.ticketdetails}',
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'not showing${ticket.ticketDetails}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 20),
+                            fontWeight: FontWeight.w600, fontSize: 20),
                       ),
                       // Icon(Icons.verified_outlined),
                     ],
@@ -53,7 +52,7 @@ class TicketWidget extends StatelessWidget {
                       Text(
                         'Seller: ${ticket.owner} ',
                         style:
-                            TextStyle(color: Colors.blueAccent, fontSize: 14),
+                            TextStyle(color: Colors.blueAccent, fontSize: 18),
                       ),
                       Spacer(),
                       //======== add to django
@@ -72,7 +71,7 @@ class TicketWidget extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.w800, fontSize: 17)),
                         Spacer(),
-                        Text('not showing delivery${ticket.deliverymethod}'),
+                        Text('${ticket.delivery}'),
                       ],
                     ),
                   )

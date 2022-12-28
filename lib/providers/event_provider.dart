@@ -30,19 +30,19 @@ class EventProvider extends ChangeNotifier {
     required String title,
     required File image,
     required String venue,
-    required DateTime startdate,
+    required DateTime startDate,
     required String city,
     required String country,
-    required DateTime enddate,
+    required DateTime endDate,
   }) async {
     try {
-      var response = await Client.dio.post('/events/',
+      var response = await Client.dio.post('/events/add/',
           data: FormData.fromMap({
             'title': title,
             'image': await MultipartFile.fromFile(image.path),
             'venue': venue,
-            'startdate': startdate.toString(),
-            'enddate': enddate.toString(),
+            'startDate': startDate.toString(),
+            'endDate': endDate.toString(),
             'city': city,
             'country': country,
           }));
