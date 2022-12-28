@@ -98,7 +98,7 @@ class MyApp extends StatelessWidget {
         ),
         GoRoute(
           path: '/contactus',
-          builder: (context, state) => ContactPage(),
+          builder: (context, state) => ContactUsPage(),
         ),
       ],
     );

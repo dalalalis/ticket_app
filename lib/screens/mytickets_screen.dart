@@ -24,7 +24,11 @@ class _MyTicketsState extends State<MyTickets> {
   Widget build(BuildContext context) {
     var myticket = context.watch<MyTicketProvider>().tickets;
     return Scaffold(
-        appBar: AppBar(title: Text('My Listed Tickets')),
+        appBar: AppBar(
+          title: Text('My Listed Tickets'),
+          foregroundColor: Colors.grey[800],
+          backgroundColor: Colors.white,
+        ),
         body: ListView.builder(
           itemCount: myticket.length,
           itemBuilder: (context, index) =>

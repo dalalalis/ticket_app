@@ -47,24 +47,74 @@ class _CheckoutPageState extends State<CheckoutPage> {
             duration: popDuration,
           )),
       body: Container(
-        child: Column(children: [
-          Text(
-            'Order summary',
-            style: Styles.headLineStyle,
-          ),
-          Text('${widget.ticket.event}', style: Styles.headLineStyle),
-          Text('${widget.ticket.owner}', style: Styles.headLineStyle2),
-          Text('${widget.ticket.delivery}', style: Styles.headLineStyle2),
-          Text('${widget.ticket.event}', style: Styles.headLineStyle3),
-          Text('${widget.ticket.price}', style: Styles.headLineStyle3),
-          Text('Terms and Conditions', style: Styles.headLineStyle3),
-          ElevatedButton(
-            onPressed: () async {
-              // await context.read<OrderProvider>().addOrder(ticket: widget.ticket)
-            },
-            child: Text('data'),
-          )
-        ]),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: SlideCountdown(
+                duration: Duration(seconds: 10),
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.blue),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Event: ${widget.ticket.event}',
+                        style: Styles.headLineStyle),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Seller: ${widget.ticket.owner}',
+                        style: Styles.headLineStyle2),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Delivery Method: ${widget.ticket.delivery}',
+                        style: Styles.headLineStyle2),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Order Number: ${widget.ticket.id}',
+                        style: Styles.headLineStyle3),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Total Price:${widget.ticket.price}',
+                        style: Styles.headLineStyle3),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                        'Ticket Details: ${widget.ticket.ticketdetails}',
+                        style: Styles.headLineStyle3),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                        'By purchasing the ticket you are accepting the Terms and Conditions',
+                        style: Styles.headLineStyle3),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: ElevatedButton(
+                onPressed: () async {
+                  // await context.read<OrderProvider>().addOrder(ticket: widget.ticket)
+                },
+                child: Text('Purchase Ticket'),
+              ),
+            ),
+            Text('you will redirected to the payment gate way'),
+          ],
+        ),
       ),
     );
   }

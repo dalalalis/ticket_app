@@ -15,7 +15,6 @@ class HomeScreen extends StatefulWidget {
   HomeScreen({
     super.key,
   });
-  final authProvider = AuthProvider().username;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -42,13 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           children: [
                             Text(
-                              'Hello ${widget.authProvider}',
-                              style: Styles.headLineStyle3,
+                              'Hala ${context.watch<AuthProvider>().username}',
+                              // 'Hello ${widget.authProvider}',
+
+                              style: Styles.headLineStyle2,
                             ),
                           ],
                         ),
                         SizedBox(height: 7),
-                        Text('Start Booking', style: Styles.headLineStyle),
+                        Text('Book and Enjoy!', style: Styles.headLineStyle),
                       ],
                     ),
                   ),
@@ -136,6 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 10),
               //list view inside a container (add height)
               SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    left: 3,
+                  ),
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [WeekEvent(), WeekEvent1()],

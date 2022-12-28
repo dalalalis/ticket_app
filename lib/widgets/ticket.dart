@@ -28,21 +28,21 @@ class TicketWidget extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10, right: 10, top: 12),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        'number of tickets {ticket.quantity}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     Text(
+                  //       ' ${ticket.ticketdetails}',
+                  //       style: TextStyle(
+                  //           fontWeight: FontWeight.w500, fontSize: 16),
+                  //     ),
+                  //   ],
+                  // ),
                   Row(
                     children: [
                       Text(
                         '${ticket.ticketdetails}',
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 20),
+                            fontWeight: FontWeight.w600, fontSize: 20),
                       ),
                       // Icon(Icons.verified_outlined),
                     ],
@@ -52,7 +52,7 @@ class TicketWidget extends StatelessWidget {
                       Text(
                         'Seller: ${ticket.owner} ',
                         style:
-                            TextStyle(color: Colors.blueAccent, fontSize: 14),
+                            TextStyle(color: Colors.blueAccent, fontSize: 18),
                       ),
                       Spacer(),
                       //======== add to django

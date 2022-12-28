@@ -14,10 +14,11 @@ class ProfilePage extends StatelessWidget {
 
         body: Column(
       children: [
+        SizedBox(height: 100),
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.face_rounded, size: 100),
+            Icon(Icons.person, size: 100),
             Text('Profile', style: Styles.headLineStyle)
           ],
         ),
@@ -28,20 +29,82 @@ class ProfilePage extends StatelessWidget {
               //----------------------------> add logic for admin
               // if admin then the create button gets displayed
 
-              Row(
-                children: [
-                  Center(
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.grey[200],
-                              foregroundColor: Colors.black),
-                          onPressed: () {
-                            context.push('/eventlist/create');
-                          },
-                          child: Text(' Create Event '))),
-                ],
-              ),
+              Center(
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[200],
+                          foregroundColor: Colors.black),
+                      onPressed: () {
+                        context.push('/eventlist/create');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 125, right: 125),
+                        child: Text(' Create Event '),
+                      ))),
 
+              Center(
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[200],
+                          foregroundColor: Colors.black),
+                      onPressed: () {
+                        context.push('/addticket/');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 139, right: 139),
+                        child: Text('Sell Ticket'),
+                      ))),
+
+              Center(
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[200],
+                          foregroundColor: Colors.black),
+                      onPressed: () {
+                        context.push('/mytickets/sale');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 110, right: 110),
+                        child: Text('My tickets for Sale'),
+                      ))),
+
+              Center(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        context.push('/contactus/');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 140, right: 140),
+                        child: Text('contact us'),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[200],
+                          foregroundColor: Colors.black))),
+
+              Center(
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[200],
+                          foregroundColor: Colors.black),
+                      onPressed: () {},
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 120, right: 120),
+                        child: Text(
+                          'Update Profile',
+                        ),
+                      ))),
+              Center(
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[200],
+                          foregroundColor: Colors.blue),
+                      onPressed: () {
+                        context.push('');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 108, right: 108),
+                        child: Text('terms and conditons'),
+                      ))),
               Center(
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -57,49 +120,6 @@ class ProfilePage extends StatelessWidget {
                           'Logout',
                         ),
                       ))),
-              Center(
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[200],
-                          foregroundColor: Colors.black),
-                      onPressed: () {
-                        context.push('/addticket/');
-                      },
-                      child: Text('Sell Ticket'))),
-              Center(
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[200],
-                          foregroundColor: Colors.blue),
-                      onPressed: () {
-                        context.push('');
-                      },
-                      child: Text('terms and conditons'))),
-              Center(
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[200],
-                          foregroundColor: Colors.black),
-                      onPressed: () {
-                        context.push('/mytickets/sale');
-                      },
-                      child: Text('My tickets for Sale'))),
-              Center(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        context.push('/contactus/');
-                      },
-                      child: Text('contact us'),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[200],
-                          foregroundColor: Colors.black))),
-              Center(
-                child: ElevatedButton(
-                    onPressed: () {
-                      context.push("/signup");
-                    },
-                    child: Text("Signup")),
-              ),
             ],
           ),
         ),

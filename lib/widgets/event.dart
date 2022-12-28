@@ -25,10 +25,10 @@ class EventsView extends StatelessWidget {
           },
           child: Column(
             children: [
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              SizedBox(
+                height: 120,
                 child: Image(
+                  fit: BoxFit.contain,
                   image: NetworkImage("${event.image}"),
                   height: 100,
                   width: 200,

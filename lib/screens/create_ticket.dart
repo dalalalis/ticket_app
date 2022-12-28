@@ -35,7 +35,11 @@ class _AddTicketState extends State<AddTicket> {
     List<Events> events;
     events = context.watch<EventProvider>().events;
     return Scaffold(
-        appBar: AppBar(title: Text('Add Ticket For Sale')),
+        appBar: AppBar(
+          title: Text('Add Ticket For Sale'),
+          foregroundColor: Colors.grey[800],
+          backgroundColor: Colors.white,
+        ),
         body: SafeArea(
             child: Form(
                 key: formKey,
@@ -174,7 +178,7 @@ class _AddTicketState extends State<AddTicket> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      "Event created",
+                                      "Ticket Added",
                                     ),
                                     backgroundColor: Colors.green,
                                   ),

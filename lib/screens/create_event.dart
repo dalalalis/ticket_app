@@ -29,7 +29,11 @@ class _CreateEventState extends State<CreateEvent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add Event')),
+      appBar: AppBar(
+        title: Text('Add Event'),
+        foregroundColor: Colors.grey[800],
+        backgroundColor: Colors.white,
+      ),
       body: SafeArea(
         child: Form(
           key: formKey,

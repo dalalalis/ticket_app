@@ -83,6 +83,7 @@ class AuthProvider extends ChangeNotifier {
     if (token != null && !JwtDecoder.isExpired(token)) {
       var tokenMap = JwtDecoder.decode(token); // converting the token to map
       username = tokenMap["username"];
+
       Client.dio.options.headers["authorization"] = "Bearer $token";
 
       return true;

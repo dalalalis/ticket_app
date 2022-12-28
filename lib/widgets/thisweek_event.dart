@@ -10,7 +10,7 @@ class WeekEvent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
+      width: 215,
       height: 200,
       child: Container(
         height: 10,
@@ -22,11 +22,11 @@ class WeekEvent extends StatelessWidget {
             },
             child: Column(
               children: [
-                Spacer(),
                 Image(
+                  fit: BoxFit.fill,
                   image: AssetImage('lib/assets/newyear.jpeg'),
                   height: 100,
-                  width: 140,
+                  width: 200,
                 ),
                 Spacer(),
                 Padding(
