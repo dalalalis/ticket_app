@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_app/providers/order_provider.dart';
+import 'package:ticket_app/screens/past_tickets.dart';
+import 'package:ticket_app/screens/upcoming-tickets.dart';
+
+import '../utils/app_styling.dart';
+
+// just call the funxtions here
 
 class MyTicketView extends StatefulWidget {
   const MyTicketView({super.key});
@@ -14,10 +20,13 @@ class _MyTicketViewState extends State<MyTicketView>
   late TabController _tabController;
   final _selectedColor = const Color(0xff1a73e8);
   final _unselectedColor = const Color(0xff5f6368);
+  //static final List<Widget> tabController = <Widget>[Upcoming(), PastTicket()];
 
   final _iconTabs = [
     // stopped here
-    Tab(text: ("Upcoming Tickets")),
+    Tab(
+      text: ("Upcoming Tickets"),
+    ),
     Tab(text: ("Past Tickets")),
   ];
 
@@ -35,24 +44,29 @@ class _MyTicketViewState extends State<MyTicketView>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(children: [
-      ListView(shrinkWrap: true, children: [
-        TabBar(
-          controller: _tabController,
-          tabs: _iconTabs,
-          unselectedLabelColor: Colors.black,
-          labelColor: _selectedColor,
-          indicator: BoxDecoration(
-            borderRadius: BorderRadius.circular(80.0),
-            color: _selectedColor.withOpacity(0.2),
-          ),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          body: Column(children: [
+        Expanded(
+          child: ListView(shrinkWrap: true, children: [
+            TabBar(
+              controller: _tabController,
+              tabs: _iconTabs,
+              unselectedLabelColor: Colors.black,
+              labelColor: _selectedColor,
+              indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(80.0),
+                color: _selectedColor.withOpacity(0.2),
+              ),
+            ),
+          ]),
         ),
-      ]),
-      //   ListView.builder(
-      //     // itemBuilder:(context, index) =>
-      //   // context.watch<OrderProvider>().orders[index])],
-      // )
-    ]));
+        //   ListView.builder(
+        //     // itemBuilder:(context, index) =>
+        //   // context.watch<OrderProvider>().orders[index])],
+        // )
+      ])),
+    );
   }
 }
