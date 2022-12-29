@@ -56,11 +56,11 @@ class MyApp extends StatelessWidget {
     final router = GoRouter(
       initialLocation: '$intitialRoute',
       routes: [
-        GoRoute(path: '/', builder: ((context, state) => Signin())),
-        GoRoute(path: '/signup', builder: ((context, state) => Signup())),
         GoRoute(
-            path: '/home',
+            path: '/',
             builder: ((context, state) => MyHomePage(title: 'homepage'))),
+        GoRoute(path: '/home', builder: ((context, state) => Signin())),
+        GoRoute(path: '/signup', builder: ((context, state) => Signup())),
         GoRoute(
             path: '/eventlist', builder: ((context, state) => EventListView())),
         GoRoute(
