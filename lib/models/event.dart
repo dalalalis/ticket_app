@@ -6,10 +6,10 @@ class Events {
   String title;
   String image;
   String venue;
-  String endDate;
+  DateTime endDate;
   String city;
   String country;
-  String startDate;
+  DateTime startDate;
   Events({
     required this.id,
     required this.title,
@@ -40,10 +40,10 @@ class Events {
       title: map['title'] as String,
       image: map['image'] as String,
       venue: map['venue'] as String,
-      endDate: map['endDate'] as String,
+      endDate: DateTime.tryParse(map['endDate']) ?? DateTime.now(),
       city: map['city'] as String,
       country: map['country'] as String,
-      startDate: map['startDate'] as String,
+      startDate: DateTime.tryParse(map['startDate']) ?? DateTime.now(),
     );
   }
 

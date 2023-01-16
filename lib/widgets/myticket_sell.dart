@@ -49,19 +49,22 @@ class MyTicketsForSale extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          '${ticket.ticketdetails}',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              // context.watch<MyTicketProvider>().deleteMyTicket()
-                            },
-                            icon: Icon(Icons.delete))
-                      ],
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Text(
+                            '${ticket.ticketdetails}',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 20),
+                          ),
+                          Spacer(),
+                          IconButton(
+                              onPressed: () {
+                                // context.watch<MyTicketProvider>().deleteMyTicket()
+                              },
+                              icon: Icon(Icons.delete))
+                        ],
+                      ),
                     ),
                     // Icon(Icons.verified_outlined),
                   ],

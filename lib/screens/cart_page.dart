@@ -42,17 +42,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Styles.bgColor,
-          title: SlideCountdown(
-            duration: popDuration,
-          )),
+        backgroundColor: Styles.bgColor,
+      ),
       body: Container(
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: SlideCountdown(
-                duration: Duration(seconds: 10),
+                duration: Duration(seconds: 20),
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Colors.blue),

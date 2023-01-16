@@ -11,7 +11,6 @@ class WeekEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 215,
-      height: 200,
       child: Container(
         height: 10,
         child: Card(
@@ -22,13 +21,13 @@ class WeekEvent extends StatelessWidget {
             },
             child: Column(
               children: [
-                Image(
-                  fit: BoxFit.fill,
-                  image: AssetImage('lib/assets/newyear.jpeg'),
-                  height: 100,
-                  width: 200,
+                Expanded(
+                  child: Image(
+                    fit: BoxFit.fill,
+                    image: AssetImage('lib/assets/newyear.jpeg'),
+                    width: 200,
+                  ),
                 ),
-                Spacer(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(

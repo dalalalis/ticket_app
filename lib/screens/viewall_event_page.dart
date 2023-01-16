@@ -31,8 +31,11 @@ class EventListView extends StatelessWidget {
             // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             //     crossAxisCount: 2, crossAxisSpacing: 12, mainAxisSpacing: 22)
             itemCount: context.watch<EventProvider>().events.length,
-            itemBuilder: ((context, index) => EventsView(
-                event: context.watch<EventProvider>().events[index])),
+            itemBuilder: ((context, index) => Container(
+                  height: 300,
+                  child: EventsView(
+                      event: context.watch<EventProvider>().events[index]),
+                )),
           ))),
         ));
   }

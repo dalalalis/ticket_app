@@ -22,15 +22,15 @@ class WeekEvent1 extends StatelessWidget {
             },
             child: Column(
               children: [
-                SizedBox(
-                  height: 99,
-                  width: 300,
-                  child: Image(
-                    fit: BoxFit.cover,
-                    image: AssetImage('lib/assets/newyearwalk.jpeg'),
+                Expanded(
+                  child: SizedBox(
+                    width: 300,
+                    child: Image(
+                      fit: BoxFit.cover,
+                      image: AssetImage('lib/assets/newyearwalk.jpeg'),
+                    ),
                   ),
                 ),
-                Spacer(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(

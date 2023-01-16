@@ -11,10 +11,29 @@ class EventsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //String manipulation
+    // String datestring = "2023-01-20T07:19:39Z";
+
+    // var tokens = datestring.split("T");
+
+    // var dateString = tokens[0]; //2023-01-20
+    // var dateTokens = dateString.split('-');
+    // var year = dateTokens[0];
+    // var month = dateTokens[1];
+    // var day = dateTokens[2];
+
+    // var timeString = tokens[1].substring(0, tokens[1].length - 1); //"07:19:39"
+
+    // var timeTokens = timeString.split(":");
+    // var hours = timeTokens[0];
+    // var monites = timeTokens[1];
+    // var seconds = timeTokens[2];
+
     return Container(
       margin: EdgeInsets.all(4),
-      height: 230,
+      width: 210,
       child: Card(
+        clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: () {
             print('+++++++++');
@@ -24,29 +43,37 @@ class EventsView extends StatelessWidget {
             //send event id to be used in the detailed page.
           },
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
-                height: 120,
+              Expanded(
                 child: Image(
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                   image: NetworkImage("${event.image}"),
-                  height: 100,
-                  width: 200,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
                   '${event.title}',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               ),
-              Text('${event.startDate}'),
-              Text('${event.venue}'),
+              Text(
+                '${event.startDate.year}-${event.startDate.month}-${event.startDate.day} ${event.startDate.hour}:${event.startDate.minute}',
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                '${event.venue}',
+                textAlign: TextAlign.center,
+              ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
                   '${event.city}, ${event.country}',
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.w600),
                 ),
               )

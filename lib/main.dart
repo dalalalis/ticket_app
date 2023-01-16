@@ -37,72 +37,71 @@ void main() async {
   var authorized = await authProvider.hasToken();
   print("Authorized $authorized");
 
+  if (authorized) {
+    router.go("/home");
+  }
+
   runApp(MyApp(
     authProvider: authProvider,
-    intitialRoute: authorized ? "/home" : "/",
   ));
 }
 
+final router = GoRouter(
+  routes: [
+    GoRoute(path: '/', builder: ((context, state) => Signin())),
+    GoRoute(path: '/signup', builder: ((context, state) => Signup())),
+    GoRoute(
+        path: '/home',
+        builder: ((context, state) => MyHomePage(title: 'homepage'))),
+    GoRoute(path: '/eventlist', builder: ((context, state) => EventListView())),
+    GoRoute(
+        path: '/eventlist/create',
+        builder: ((context, state) => CreateEvent())),
+    GoRoute(
+        path: '/cart',
+        builder: ((context, state) =>
+            CheckoutPage(ticket: state.extra as Tickets))),
+    GoRoute(
+        path: '/eventlist/detailed',
+        builder: ((context, state) =>
+            TicketPage(event: state.extra as Events))),
+    GoRoute(
+      path: '/signup',
+      builder: (context, state) => Signup(),
+    ),
+    GoRoute(path: '/signin', builder: ((context, state) => Signin())),
+    GoRoute(
+      path: '/addticket',
+      builder: (context, state) => AddTicket(),
+    ),
+    GoRoute(
+      path: '/tickets/update',
+      builder: (context, state) {
+        final ticket = context.read<TicketProvider>().tickets.firstWhere(
+            (ticket) => ticket.id.toString() == (state.params['ticketId']!));
+        return TicketUpdate(ticket: ticket);
+      },
+    ),
+    GoRoute(
+      path: '/mytickets/sale',
+      builder: (context, state) => MyTickets(),
+    ),
+    GoRoute(
+      path: '/contactus',
+      builder: (context, state) => ContactUsPage(),
+    ),
+  ],
+);
+
 class MyApp extends StatelessWidget {
-  final String intitialRoute;
   final AuthProvider authProvider;
 
-  MyApp({required this.intitialRoute, required this.authProvider});
+  MyApp({required this.authProvider});
 
   // This widget is the root of your application.
 
   @override
   Widget build(BuildContext context) {
-    final router = GoRouter(
-      initialLocation: '$intitialRoute',
-      routes: [
-        GoRoute(path: '/', builder: ((context, state) => Signin())),
-        GoRoute(path: '/signup', builder: ((context, state) => Signup())),
-        GoRoute(
-            path: '/home',
-            builder: ((context, state) => MyHomePage(title: 'homepage'))),
-        GoRoute(
-            path: '/eventlist', builder: ((context, state) => EventListView())),
-        GoRoute(
-            path: '/eventlist/create',
-            builder: ((context, state) => CreateEvent())),
-        GoRoute(
-            path: '/cart',
-            builder: ((context, state) =>
-                CheckoutPage(ticket: state.extra as Tickets))),
-        GoRoute(
-            path: '/eventlist/detailed',
-            builder: ((context, state) =>
-                TicketPage(event: state.extra as Events))),
-        GoRoute(
-          path: '/signup',
-          builder: (context, state) => Signup(),
-        ),
-        GoRoute(path: '/signin', builder: ((context, state) => Signin())),
-        GoRoute(
-          path: '/addticket',
-          builder: (context, state) => AddTicket(),
-        ),
-        GoRoute(
-          path: '/tickets/update',
-          builder: (context, state) {
-            final ticket = context.read<TicketProvider>().tickets.firstWhere(
-                (ticket) =>
-                    ticket.id.toString() == (state.params['ticketId']!));
-            return TicketUpdate(ticket: ticket);
-          },
-        ),
-        GoRoute(
-          path: '/mytickets/sale',
-          builder: (context, state) => MyTickets(),
-        ),
-        GoRoute(
-          path: '/contactus',
-          builder: (context, state) => ContactUsPage(),
-        ),
-      ],
-    );
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => authProvider),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -23,131 +25,135 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    var events = context.watch<EventProvider>().events;
+
     return Scaffold(
-      backgroundColor: Styles.bgColor,
-      body: ListView(children: [
-        Container(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: Column(
-            children: [
-              SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              'Hala ${context.watch<AuthProvider>().username}',
-                              // 'Hello ${widget.authProvider}',
+        backgroundColor: Styles.bgColor,
+        body: SafeArea(
+          child: Container(
+            padding: EdgeInsets.only(left: 20, right: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'Hala ${context.watch<AuthProvider>().username}',
+                                // 'Hello ${widget.authProvider}',
 
-                              style: Styles.headLineStyle2,
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 7),
-                        Text('Book and Enjoy!', style: Styles.headLineStyle),
-                      ],
+                                style: Styles.headLineStyle2,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 7),
+                          Text('Book and Enjoy!', style: Styles.headLineStyle),
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                      height: 80,
-                      width: 90,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('lib/assets/logo.png'))))
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                // child: Container(
-                //   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(10),
-                //       color: Color(0xFFF4F6FD)),
-                //   child: Row(
-                //     children: [
-                //       Icon(FluentSystemIcons.ic_fluent_search_regular,
-                //           color: Color(0xFFBFC205)),
-                //       SizedBox(width: 3),
-                //       Text(
-                //         'Search',
-                //         style: Styles.headLineStyle4,
-                //       )
-                //     ],
-                //   ),
-                // ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Featured Events', style: Styles.headLineStyle2),
-                  InkWell(
-                    child: Text('view all',
-                        style: Styles.textStyle
-                            .copyWith(color: Styles.primaryColor)),
-                    onTap: () {
-                      context.push('/eventlist/');
-                      print('eventlist view');
-                    },
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: 250,
-                width: 350,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 3,
-                  itemBuilder: (context, index) => EventsView(
-                      event: context.watch<EventProvider>().events[index]),
-
-                  // child: Row(
-                  // //   children: [EventView(), EventView(), EventView()],
-                  // )
+                    Container(
+                        height: 80,
+                        width: 90,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage('lib/assets/logo.png'))))
+                  ],
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  // child: Container(
+                  //   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  //   decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //       color: Color(0xFFF4F6FD)),
+                  //   child: Row(
+                  //     children: [
+                  //       Icon(FluentSystemIcons.ic_fluent_search_regular,
+                  //           color: Color(0xFFBFC205)),
+                  //       SizedBox(width: 3),
+                  //       Text(
+                  //         'Search',
+                  //         style: Styles.headLineStyle4,
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Featured Events', style: Styles.headLineStyle2),
+                    InkWell(
+                      child: Text('view all',
+                          style: Styles.textStyle
+                              .copyWith(color: Styles.primaryColor)),
+                      onTap: () {
+                        context.push('/eventlist/');
+                        print('eventlist view');
+                      },
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: min(3, events.length),
+                    itemBuilder: (context, index) =>
+                        EventsView(event: events[index]),
 
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // //binary logical operator
-                  // if (true)
-                  Text('This Weeks Events', style: Styles.headLineStyle2),
-                  InkWell(
-                    onTap: () {
-                      print('you are tapping view all');
-                    },
-                    child: Text('view all',
-                        style: Styles.textStyle
-                            .copyWith(color: Styles.primaryColor)),
-                  )
-                ],
-              ),
-              SizedBox(height: 10),
-              //list view inside a container (add height)
-              SingleChildScrollView(
-                  padding: EdgeInsets.only(
-                    left: 3,
+                    // child: Row(
+                    // //   children: [EventView(), EventView(), EventView()],
+                    // )
                   ),
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [WeekEvent(), WeekEvent1()],
-                  ))
-            ],
+                ),
+
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // //binary logical operator
+                    // if (true)
+                    Text('This Weeks Events', style: Styles.headLineStyle2),
+                    InkWell(
+                      onTap: () {
+                        print('you are tapping view all');
+                      },
+                      child: Text('view all',
+                          style: Styles.textStyle
+                              .copyWith(color: Styles.primaryColor)),
+                    )
+                  ],
+                ),
+                SizedBox(height: 10),
+                //list view inside a container (add height)
+                Expanded(
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      WeekEvent(),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      WeekEvent1()
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        )
-      ]),
-    );
+        ));
   }
 }
